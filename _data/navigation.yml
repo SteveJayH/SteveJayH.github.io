@@ -11,4 +11,5 @@ main:
   # - title: "Sitemap"
   #   url: /sitemap/
   - title: "CV"
-    url: https://drive.google.com/file/d/17VV5mFyLA4J6c7cwrKEqp-FojlNc-ozJ/view
+    url: https://drive.google.com/file/d/17VV5mFyLA4J6c7cwrKEqp-FojlNc-ozJ/view # /assets/cv/CV2021_Summer.pdf
+    target: "_blank"
