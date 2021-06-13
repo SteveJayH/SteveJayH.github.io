@@ -292,7 +292,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          less than 1 minute read
+          1 minute read
         
       </span>
     
@@ -307,12 +307,39 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#hi">Hi</a></li></ul>
+              <ul class="toc__menu"><li><a href="#title">Title</a><ul><li><a href="#intro">Intro</a><ul><li><a href="#3rd">3rd</a><ul><li><a href="#4th">4th</a></li><li><a href="#5th">5th</a></li></ul></li></ul></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <h2 id="hi">Hi</h2>
+        <!-- <h1 align="center"> BEAR: Efficient Neural Network Approximation of Robust PCA for Automated Analysis of Calcium Imaging Data </h1> -->
+
+<blockquote>
+  <p><strong><em>Approximation of Robust Principal Component Analysis (RPCA), Fast and Feasible on Large data. Real-time, Online update is also possible.</em></strong></p>
+</blockquote>
+
+<ul>
+  <li>[2021. 06. 12] BEAR paper accepted to MICCAI 2021! Manuscript and Source code will be available soon!</li>
+</ul>
+
+<h1 id="title">Title</h1>
+
+<h2 id="intro">Intro</h2>
+
+<p>Robust Principal Component Analysis (RPCA) decomposes observed data into underlying low-rank and sparse parts.
+For the use in video data, low-rank and sparse data can be interpreted as the background and activity, respectively.
+It is widely used in video surveillance, face detection, and also analyzing neuronal activity.</p>
+
+<p>In calcium imaging, which enables optical imaging of the neuronal activity, analyzing the neuronal signals suffers from the high level of background fluorescence. It is desirable to separate the foreground (i.e., activity) from the background before applying downstream analysis, such as image-based neuron detection algorithms, NMF-based signal extraction methods, volume reconstruction, etc. However, lots of previous RPCA algorithms involve singular value decomposition (SVD) and need to store entire data in memory. Thus, they take a long time and lots of memory thus often impossible to solve for large-scale data.</p>
+
+<p>We introduce a Bilinear neural network for Efficient Approximation of RPCA (BEAR) which is significantly fast and scalable RPCA algorithm. In addition, it can be combined with other neural networks for end-to-end training.</p>
+
+<h3 id="3rd">3rd</h3>
+
+<h4 id="4th">4th</h4>
+
+<h4 id="5th">5th</h4>
+
 
         
       </section>
