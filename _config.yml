@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "seungjaehan" # "air", "aqua", "contrast", "dark", "d
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Steve-J Studies Brain"
+title                    : "SteveJ Studies Brain"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Seungjae Han"
@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "Seungjae Han"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I study neuroengineering."
+  bio              : "I study neuroengineering. <br/><br/> I'm interested in how to analyze brain signal **efficiently**."
   # location         : "Somewhere"
   email            :
   links:
