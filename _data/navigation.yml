@@ -10,6 +10,6 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
-  - title: "CV"
+  - title: "📁 CV"
     url: https://drive.google.com/file/d/17VV5mFyLA4J6c7cwrKEqp-FojlNc-ozJ/view # /assets/cv/CV2021_Summer.pdf
     target: "_blank"
