@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Seungjae Han"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I study neuroengineering. <br/><br/> I'm interested in how to analyze brain signal **efficiently**."
   # location         : "Somewhere"
   email            :
