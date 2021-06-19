@@ -1,8 +1,17 @@
 ---
-permalink: /about/
-title: "About"
+layout: single
+
+author_profile: true
+permalink: /
+title: "Seungjae Han"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+I am a PhD student at [Neuro-Instrumentation & Computational Analysis Lab](https://nicalab.com){:target="_blank"} (NICA Lab) at [KAIST](https://www.kaist.ac.kr/en/){:target="_blank"}.
+I am working with Professor [Young-Gyu Yoon](https://www.nicalab.com/people-young-gyu-yoon){:target="_blank"} on finding better efficient algorithms used for calcium imaging based on neural network.
+Not only low-level vision tasks such as improving the spatial resolution, I am also studying about neurons' temporal activity or patterns.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+For details, please refer to my [CV](https://drive.google.com/file/d/17VV5mFyLA4J6c7cwrKEqp-FojlNc-ozJ/view){:target="_blank"}.
+
+### News (June 2021 ~ )
+
+* June 2021: [BEAR](/publications/){:target="_blank"} has been accepted at [MICCAI 2021](https://www.miccai2021.org/en/){:target="_blank"}.

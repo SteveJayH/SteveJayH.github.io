@@ -3,13 +3,17 @@ main:
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+    # url: /about/ # https://mmistakes.github.io/minimal-mistakes/about/
+  - title: "Publications"
+    url: /publications/
+  - title: "Posts"
+    url: /recent_post/
   # - title: "Sample Posts"
-  #   url: /year-archive/
+  #   url: /year-archive/ /posts/
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
-  - title: "📁 CV"
+  - title: "CV"
     url: https://drive.google.com/file/d/17VV5mFyLA4J6c7cwrKEqp-FojlNc-ozJ/view # /assets/cv/CV2021_Summer.pdf
     target: "_blank"

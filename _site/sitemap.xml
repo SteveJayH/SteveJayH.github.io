@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://stevejayh.github.io/about/</loc>
+<loc>https://stevejayh.github.io/</loc>
 </url>
 <url>
 <loc>https://stevejayh.github.io/categories/</loc>
 </url>
 <url>
-<loc>https://stevejayh.github.io/</loc>
+<loc>https://stevejayh.github.io/depre_index/</loc>
+</url>
+<url>
+<loc>https://stevejayh.github.io/publications</loc>
+</url>
+<url>
+<loc>https://stevejayh.github.io/recent_post/</loc>
 </url>
 <url>
 <loc>https://stevejayh.github.io/tags/</loc>
@@ -18,5 +24,17 @@
 <url>
 <loc>https://stevejayh.github.io/assets/cv/CV2021_Summer.pdf</loc>
 <lastmod>2021-06-14T12:19:31+09:00</lastmod>
+</url>
+<url>
+<loc>https://stevejayh.github.io/assets/papers/2018_KONI_SeungjaeHan_1.pdf</loc>
+<lastmod>2021-06-19T22:06:04+09:00</lastmod>
+</url>
+<url>
+<loc>https://stevejayh.github.io/assets/papers/2019_KONI_SeungjaeHan_1.pdf</loc>
+<lastmod>2021-06-19T22:07:30+09:00</lastmod>
+</url>
+<url>
+<loc>https://stevejayh.github.io/assets/papers/2019_KONI_SeungjaeHan_2.pdf</loc>
+<lastmod>2021-06-19T22:07:32+09:00</lastmod>
 </url>
 </urlset>
