@@ -96,9 +96,10 @@ analytics:
 author:
   name             : "Seungjae Han"
   avatar           : "/assets/images/avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I study neuroengineering. <br/><br/> I'm interested in how to analyze brain signal **efficiently**. <br/><br/> *<jay0118@kaist.ac.kr>*"
+  bio              : "I study neuroengineering. <br/><br/> I'm interested in how to analyze brain signal **efficiently**."
+  # <br/><br/> *<jay0118@kaist.ac.kr>*
   # location         : "Somewhere"
-  email            :
+  email            : jay0118@kaist.ac.kr
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
