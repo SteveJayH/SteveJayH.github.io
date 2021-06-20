@@ -9,7 +9,7 @@ title: "Publications"
 ### International conferences
 
 0. **S. Han**, E.-S. Cho., I. Park, K. Shin, Y.-G. Yoon, "Efficient Neural Network Approximation of Robust PCA for Automated Analysis of Calcium Imaging Data", *24th International Conference on Medical Image Computing & Computer Assisted Intervention (MICCAI)*, 2021. (Accepted) [[link & code (yet confidential)]](/publications/)
-1. **S. Han**, T. Kang, J. Seo, "Smartphone Application to Estimate Distances from LTE Base Stations Based on Received Signal Strength Measurements", *34th International Technical Conference on Circuits/Systems, Computes and Communications (ITC-CSCC), 2019. - **Oral Presented** [[link]](https://ieeexplore.ieee.org/document/8793365){:target="_blank"}
+1. **S. Han**, T. Kang, J. Seo, "Smartphone Application to Estimate Distances from LTE Base Stations Based on Received Signal Strength Measurements", *34th International Technical Conference on Circuits/Systems, Computes and Communications (ITC-CSCC)*, 2019. - **Oral Presented** [[link]](https://ieeexplore.ieee.org/document/8793365){:target="_blank"}
 2. H.-S. Moon, W. Kim, **S. Han**, J. Seo, "Observation of Human Trajectory in Response to Haptic Feedback from Mobile Robot", *18th International Conference on Control, Automation and Systems (ICCAS)*, 2018. [[link]](https://ieeexplore.ieee.org/document/8571937){:target="_blank"}
 {: reversed="reversed"}
 
