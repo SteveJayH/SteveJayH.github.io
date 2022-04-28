@@ -244,15 +244,32 @@
           </table>
           <table width="100%" align="center" border="0" cellpadding="20">
             <tbody>
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/joker.png" width="160"></td>
-                <td width="75%" valign="center">
+              <tr onmouseout="_behance_stop()" onmouseover="_behance_start()">
+                <td style="padding:20px;width:25%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='_behance_image'>
+                      <img src="images/cat_looking_elsewhere.png" width="160">
+                    </div>
+                    <img src="images/joker.png" width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function _behance_start() {
+                      document.getElementById('_behance_image').style.opacity = "1";
+                    }
+
+                    function _behance_stop() {
+                      document.getElementById('_behance_image').style.opacity = "0";
+                    }
+                    _behance_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
                   <a style="font-weight:bold" href="https://www.behance.net/jay0118bb54">Behance</a>
                   profile. Intereted in Illustration, Sketch, and UI/UX.
                   <br>
                   Using Procreate, Photoshop, and Illustrator.
                   <br>
-                  Also I'm currently trying oil painting!
+                  Also I'm trying oil painting!
                 </td>
               </tr>
       </tr>
