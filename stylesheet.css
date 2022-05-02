@@ -86,13 +86,13 @@ th,
 tr,
 p,
 a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px
+  font-family: Merriweather; /* 'Lato', Verdana, Helvetica, sans-serif; */
+  font-size: 14px
 }
 
 strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
+  font-family: Merriweather; /* 'Lato', Verdana, Helvetica, sans-serif; */
+  font-size: 14px;
 }
 
 heading {
