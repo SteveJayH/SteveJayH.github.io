@@ -82,7 +82,7 @@ window.onload = function () {
     timer("#neurips2022timer", "May 19, 2022 20:00:00", 0, +7); // UTC
     timer("#sfn2022timer", "Jun 15, 2022 17:00:00", 0, +4); // EDT
     timer("#opt2022timer", "Sep 17, 2022 20:00:00", 1, +7); // UTC
-    timer("#aaai2023timer", "Aug 30, 2022 23:59:59", 1, +7);
+    timer("#aaai2023timer", "Aug 15, 2022 23:59:59", 0, +12); // Anywher on earth (UTC-12??)
     timer("#isbi2023timer", "Oct 15, 2022 23:59:59", 1, +8);
     timer("#cvpr2023timer", "Nov 18, 2022 11:59:59", 1, +8);
     timer("#embc2023timer", "Jan 31, 2023 12:59:59", 1, +8);
