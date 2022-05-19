@@ -20,6 +20,29 @@ window.onload = function () {
 
         //console.log(target_, deadline_time)
         //console.log(target_, deadline_local_time)
+        var end = moment.tz(date, "Etc/GMT" + gmt_offset).valueOf()
+        var start = moment().local().valueOf()
+        // alert("SSS " + end + "D  " + start)
+        var distance = end - start;
+
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24)).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+
+        // target.innerText =
+        //     days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (expected == 1) {
+            target.innerHTML = target.innerHTML = "<timeleft>" + days + "d " + hours + "h " + minutes + "m " + seconds + "s " + "</timeleft> <deadline>(Expected)</deadline>" + "<br/><deadline>Deadline in timezone from conference website : " + deadline_time + " </deadline> <br/> <deadline>Deadline in your local " + local_name + " timezone : " + deadline_local_time + " </deadline>";
+        }
+        else {
+            target.innerHTML = target.innerHTML = "<timeleft>" + days + "d " + hours + "h " + minutes + "m " + seconds + "s " + "</timeleft>" + "<br/><deadline>Deadline in timezone from conference website : " + deadline_time + " </deadline> <br/> <deadline>Deadline in your local " + local_name + " timezone : " + deadline_local_time + " </deadline>";
+        }
+
+        if (distance < 0) {
+            target.innerHTML = "<timeleft>Expired</timeleft>" + "<br/><deadline>Deadline in timezone from conference website : " + deadline_time + " </deadline> <br/> <deadline>Deadline in your local " + local_name + " timezone : " + deadline_local_time + " </deadline>";
+        }
 
         setInterval(() => {
             //var now = new Date().getTime();
