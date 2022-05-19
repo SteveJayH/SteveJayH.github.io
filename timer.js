@@ -57,7 +57,7 @@ window.onload = function () {
     };
 
     timer("#neurips2022timer", "May 19, 2022 20:00:00", 0, +7); // UTC
-    timer("#opt2022timer", "Sep 17, 2022 20:00:00", 0, +7); // UTC
+    timer("#opt2022timer", "Sep 17, 2022 20:00:00", 1, +7); // UTC
     timer("#cvpr2023timer", "Nov 18, 2022 11:59:59", 1, +8);
     timer("#miccai2023timer", "Mar 1, 2023 23:59:59", 1, +8); // Pacific
     //timer("#timer2", "Jan 5, 2022 21:37:49");
