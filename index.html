@@ -31,7 +31,7 @@
 
 <body>
   <table
-    style="width:100%;max-width:950px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    style="width:100%;max-width:1050px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -44,7 +44,7 @@
   </table>
 
   <table
-    style="width:100%;max-width:950px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    style="width:100%;max-width:1050px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -124,8 +124,143 @@
             <p align="right">
               * co-first authors, ** co-corresponding authors
             </p>
+
+            <tbody id="inner">
+              <tr>
+                <td
+                  style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:16%;vertical-align:middle;font-family:'Lato';font-size:20px">
+                  Filter</td>
+              </tr>
+              <tr>
+                <td
+                  style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:16%;vertical-align:middle">
+                  Author type
+                </td>
+                <td
+                  style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:84%;vertical-align:middle">
+                  <label><input onchange="author()" id="author1" type="checkbox" name="first_author" checked>First
+                    author
+                    (3)</label> &nbsp;
+                  <label><input onchange="author()" id="author2" type="checkbox" name="first_author" checked>
+                    Co-author (3)</label>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:16%;vertical-align:middle">
+                  Paper type
+                </td>
+                <td
+                  style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:84%;vertical-align:middle">
+
+                  <label><input onchange="journal()" id="journal1" type="checkbox" name="journal" checked>Journal
+                    (3)</label>
+                  &nbsp;
+                  <label><input onchange="journal()" id="journal2" type="checkbox" name="journal" checked>Conference
+                    (3)</label>
+                </td>
+              </tr>
+            </tbody>
+
+
+            <script type="text/javascript">
+              function author() {
+                const author1_checked = document.getElementById("author1").checked;
+                const author2_checked = document.getElementById("author2").checked;
+
+                if (author1_checked && !(author2_checked)) {
+                  document.getElementById("RLP").style.display = "none";
+                  document.getElementById("WHOLEEXM").style.display = "none";
+                  document.getElementById("HAPTIC").style.display = "none";
+                }
+                else if (!(author1_checked) && author2_checked) {
+                  // document.getElementById("reals").style.display = "none";
+                  document.getElementById("3DM").style.display = "none";
+                  document.getElementById("BEAR").style.display = "none";
+                  document.getElementById("LTE").style.display = "none";
+                }
+                else {
+                  // document.getElementById("reals").style.display = "";
+                  document.getElementById("3DM").style.display = "";
+                  document.getElementById("BEAR").style.display = "";
+                  document.getElementById("LTE").style.display = "";
+                  document.getElementById("RLP").style.display = "";
+                  document.getElementById("WHOLEEXM").style.display = "";
+                  document.getElementById("HAPTIC").style.display = "";
+                }
+              }
+              function journal() {
+                const journal1_checked = document.getElementById("journal1").checked;
+                const journal2_checked = document.getElementById("journal2").checked;
+
+                if (journal1_checked && !(journal2_checked)) {
+                  // document.getElementById("reals").style.display = "none";
+                  document.getElementById("BEAR").style.display = "none";
+                  document.getElementById("LTE").style.display = "none";
+                  document.getElementById("HAPTIC").style.display = "none";
+                }
+                else if (!(journal1_checked) && journal2_checked) {
+                  document.getElementById("RLP").style.display = "none";
+                  document.getElementById("WHOLEEXM").style.display = "none";
+                  document.getElementById("3DM").style.display = "none";
+                }
+                else {
+                  // document.getElementById("reals").style.display = "";
+                  document.getElementById("3DM").style.display = "";
+                  document.getElementById("BEAR").style.display = "";
+                  document.getElementById("LTE").style.display = "";
+                  document.getElementById("RLP").style.display = "";
+                  document.getElementById("WHOLEEXM").style.display = "";
+                  document.getElementById("HAPTIC").style.display = "";
+                }
+              }
+            </script>
+
             <tbody>
-              <tr onmouseout="_rlp_stop()" onmouseover="_rlp_start()">
+              <!--
+              <tr id="reals" onmouseout="_reals_stop()" onmouseover="_reals_start()">
+                <td style="padding:20px;width:16%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='_reals_image'>
+                      <img src='images/reals_thumbnail_after.png' width="160">
+                    </div>
+                    <img src='images/reals_thumbnail_before.png' width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function _reals_start() {
+                      document.getElementById('_reals_image').style.opacity = "1";
+                    }
+
+                    function _reals_stop() {
+                      document.getElementById('_reals_image').style.opacity = "0";
+                    }
+                    _reals_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:84%;vertical-align:middle">
+                  <a href="" target="_blank">
+                    <papertitle>Robust and Efficient Alignment of Calcium Imaging Data through Simultaneous Low Rank and
+                      Sparse Decomposition
+                    </papertitle>
+                  </a>
+                  <br>
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Junmo Cho</a>*,
+                  <strong>Seungjae Han</strong>*,
+                  <a href="https://sites.google.com/view/eunseocho/main" target="_blank">Eun-Seo Cho</a>,
+                  <a href="https://kijungs.github.io/" target="_blank">Kijung Shin</a>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>
+                  <br>
+                  <em>WACV 2023</em>, 2023, (accepted)
+                  <br>
+                  <a href="" target="_blank">paper</a>
+                  <p>
+                  </p>
+                </td>
+              </tr>
+              -->
+
+              <tr id="RLP" onmouseout="_rlp_stop()" onmouseover="_rlp_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
                     <div class="two" id='_rlp_image'>
@@ -162,15 +297,16 @@
                     Kim</a>,
                   <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>
                   <br>
-                  <em>Medical Image Analysis</em>, 2022, (accepted)
+                  <em>Medical Image Analysis</em>, 2022
                   <br>
-                  <a href="" target="_blank">paper</a>
+                  <a href="https://www.sciencedirect.com/science/article/pii/S1361841522002328?via%3Dihub"
+                    target="_blank">paper</a> / <a href="https://github.com/NICALab/rlpnet" target="_blank">code</a>
                   <p>
                   </p>
                 </td>
               </tr>
 
-              <tr onmouseout="_exm_stop()" onmouseover="_exm_start()">
+              <tr id="WHOLEEXM" onmouseout="_exm_stop()" onmouseover="_exm_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
                     <div class="two" id='_exm_image'>
@@ -235,7 +371,7 @@
                 </td>
               </tr>
 
-              <tr onmouseout="_3dm_stop()" onmouseover="_3dm_start()">
+              <tr id="3DM" onmouseout="_3dm_stop()" onmouseover="_3dm_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
                     <div class="two" id='_3dm_image'>
@@ -289,7 +425,7 @@
                 </td>
               </tr>
 
-              <tr onmouseout="nerd_stop()" onmouseover="nerd_start()" bgcolor="#ffffd0">
+              <tr id="BEAR" onmouseout="nerd_stop()" onmouseover="nerd_start()" bgcolor="#ffffd0">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
                     <div class="two" id='nerd_image'><video width=100% height=100% muted autoplay loop>
@@ -337,7 +473,7 @@
                 </td>
               </tr>
 
-              <tr>
+              <tr id="LTE">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <img src='images/lteapp_square.png' alt="lteapp" width="160" height="160" style="border-style: none">
                 </td>
@@ -364,7 +500,7 @@
                 </td>
               </tr>
 
-              <tr>
+              <tr id="HAPTIC">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <img src='images/haptic.png' alt="lteapp" width="160" height="160" style="border-style: none">
                 </td>
