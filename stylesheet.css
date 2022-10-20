@@ -1,8 +1,12 @@
 
  body{
-  background:#fcfcfc;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('images/wall.jpg');
 }
 
+table{
+  background: #fcfcfc;
+  border-radius:20px;
+}
 
 /* latin-ext */
 @font-face {
