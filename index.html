@@ -139,7 +139,7 @@
                   style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:84%;vertical-align:middle">
                   <label><input onchange="author()" id="author1" type="checkbox" name="first_author"> First
                     author
-                    (4)</label> &nbsp;
+                    (5)</label> &nbsp;
                   <label><input onchange="author()" id="author2" type="checkbox" name="first_author">
                     Co-author (3)</label>
                 </td>
@@ -154,7 +154,7 @@
                   style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:84%;vertical-align:middle">
 
                   <label><input onchange="journal()" id="journal1" type="checkbox" name="journal"> Journal
-                    (3)</label>
+                    (4)</label>
                   &nbsp;
                   <label><input onchange="journal()" id="journal2" type="checkbox" name="journal"> Conference
                     (4)</label>
@@ -174,12 +174,14 @@
                   document.getElementById("HAPTIC").style.display = "none";
                 }
                 else if (!(author1_checked) && author2_checked) {
+                  document.getElementById("support").style.display = "none";
                   document.getElementById("reals").style.display = "none";
                   document.getElementById("3DM").style.display = "none";
                   document.getElementById("BEAR").style.display = "none";
                   document.getElementById("LTE").style.display = "none";
                 }
                 else {
+                  document.getElementById("support").style.display = "";
                   document.getElementById("reals").style.display = "";
                   document.getElementById("3DM").style.display = "";
                   document.getElementById("BEAR").style.display = "";
@@ -200,11 +202,13 @@
                   document.getElementById("HAPTIC").style.display = "none";
                 }
                 else if (!(journal1_checked) && journal2_checked) {
+                  document.getElementById("support").style.display = "none";
                   document.getElementById("RLP").style.display = "none";
                   document.getElementById("WHOLEEXM").style.display = "none";
                   document.getElementById("3DM").style.display = "none";
                 }
                 else {
+                  document.getElementById("RLP").style.display = "";
                   document.getElementById("reals").style.display = "";
                   document.getElementById("3DM").style.display = "";
                   document.getElementById("BEAR").style.display = "";
@@ -238,6 +242,9 @@
                   </script>
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #0a9396">Registration</keyword>
+                  <keyword style="background-color: #bb3e03">Robust PCA</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="" target="_blank">
                     <papertitle>Robust and Efficient Alignment of Calcium Imaging Data through Simultaneous Low Rank and
                       Sparse Decomposition
@@ -250,11 +257,80 @@
                   <a href="https://kijungs.github.io/" target="_blank">Kijung Shin</a>,
                   <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>
                   <br>
-                  <em>WACV 2023</em>, 2023, (accepted)
-                  <br>
-                  <a href="" target="_blank">paper</a>
+                  <em>WACV</em>, 2023, (accepted)
                   <p>
                     REALS can align multiple images very fast and accurately, even if there are lots of comtaminations.
+                  </p>
+                </td>
+              </tr>
+
+
+              <tr id="support" onmouseout="_support_stop()" onmouseover="_support_start()">
+                <td style="padding:20px;width:16%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='_support_image'>
+                      <img src='images/support_after.png' width="160">
+                    </div>
+                    <img src='images/support_before.png' width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function _support_start() {
+                      document.getElementById('_support_image').style.opacity = "1";
+                    }
+
+                    function _support_stop() {
+                      document.getElementById('_support_image').style.opacity = "0";
+                    }
+                    _reals_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #e63946">Denoising</keyword>
+                  <keyword style="background-color: #495057">Voltage Imaging</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
+                  <a href="" target="_blank">
+                    <papertitle>Statistically unbiased prediction enables accurate denoising of voltage imaging data
+                    </papertitle>
+                  </a>
+                  <br>
+                  <a href="https://www.minhoeom.com/" target="_blank">Minho Eom</a>*,
+                  <strong>Seungjae Han</strong>*,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Gyuri Kim</a>,
+                  <a href="https://sites.google.com/view/eunseocho/main" target="_blank">Eun-Seo Cho</a>,
+                  <a href="https://sites.google.com/site/jbchang03/members" target="_blank">Jueun
+                    Sim</a>,
+                  <a href="https://scholar.google.com/citations?user=MplXTg5UAJsC&hl=en" target="_blank">Pojeong
+                    Park</a>,
+                  <a href="https://www.researchgate.net/scientific-contributions/Kang-Han-Lee-2107619192"
+                    target="_blank">Kang-Han
+                    Lee</a>,
+                  <a href="https://scholar.google.co.kr/citations?user=pTIzmbkAAAAJ&hl=en" target="_blank">Seonghoon
+                    Kim</a>,
+                  <a href="https://scholar.google.com/citations?user=bJ-2MhwAAAAJ&hl=en" target="_blank">Márton
+                    Rózsa</a>,
+                  <a href="https://alleninstitute.org/what-we-do/brain-science/about/team/staff-profiles/karel-svoboda1/"
+                    target="_blank">Karel Svoboda</a>,
+                  <a href="https://biosci.snu.ac.kr/neurophoton/en/professor" target="_blank">Myunghwan
+                    Choi</a>,
+                  <a href="https://scholar.google.com/citations?user=0G8geQsAAAAJ&hl=ent" target="_blank">Cheol-Hee
+                    Kim</a>,
+                  <a href="http://cohenweb.rc.fas.harvard.edu/People/people.html" target="_blank">Adam
+                    Cohen</a>,
+                  <a href="https://sites.google.com/site/jbchang03/pi?pli=1" target="_blank">Jae-Byum
+                    Chang</a>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>
+                  <br>
+                  <em>bioRxiv</em>, 2022
+                  <br>
+                  <a href="https://www.biorxiv.org/content/10.1101/2022.11.17.516709v1" target="_blank">paper</a>
+                  /
+                  <a href="https://github.com/NICALab/SUPPORT" target="_blank">code</a>
+                  /
+                  <a href="https://zenodo.org/record/7330257#.Y3mv_HZByp0" target="_blank">data</a>
+
+                  <p>
+                    Self-supervised learning method for removing Poisson-Gaussian noise in voltage imaging data.
+                    Also can be used for calcium imaging data, data with motion, and volumetric structural imaging data.
                   </p>
                 </td>
               </tr>
@@ -280,6 +356,8 @@
                   </script>
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #2d6a4f">Computational Imaging</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="" target="_blank">
                     <papertitle>Three-dimensional fluorescence microscopy through virtual refocusing using a recursive
                       light propagation network
@@ -328,6 +406,8 @@
                   </script>
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #355070">Expansion Microscopy</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="https://www.biorxiv.org/content/10.1101/2021.05.18.443629v2" target="_blank">
                     <papertitle>Nanoscale resolution imaging of the whole mouse embryos and larval zebrafish using
                       expansion microscopy
@@ -360,7 +440,7 @@
                     Lee</a>,
                   <a href="http://syntheticneurobiology.org/people/display/71/11" target="_blank">Edward S. Boyden</a>,
                   <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>**,
-                  <a href="https://sites.google.com/site/jbchang03/pi" target="_blank">Jae-Byum Chang</a>**
+                  <a href="https://sites.google.com/site/jbchang03/pi?pli=1" target="_blank">Jae-Byum Chang</a>**
                   <br>
                   <em>bioRxiv</em>, 2022
                   <br>
@@ -393,6 +473,9 @@
                   </script>
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #2d6a4f">Computational Imaging</keyword>
+                  <keyword style="background-color: #bb3e03">Robust PCA</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="https://www.osapublishing.org/oe/fulltext.cfm?uri=oe-29-20-32700&id=459843" target="_blank">
                     <papertitle>3DM: Deep decomposition and deconvolution microscopy for rapid neural activity imaging
                     </papertitle>
@@ -419,7 +502,6 @@
                     target="_blank">paper</a>
                   /
                   <a href="https://github.com/NICALab/3DM" target="_blank">code</a>
-                  <p></p>
                   <p>
                     Fast computational microscopy for the volumetric imaging of neural activity,
                     using two neural networks which perform sparse decomposition and deconvolution.
@@ -448,6 +530,8 @@
                   </script>
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #bb3e03">Robust PCA</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="https://link.springer.com/chapter/10.1007%2F978-3-030-87234-2_56/" target="_blank">
                     <papertitle>Efficient Neural Network Approximation of Robust PCA for Automated Analysis of Calcium
                       Imaging Data</papertitle>
@@ -480,6 +564,9 @@
                   <img src='images/lteapp_square.png' alt="lteapp" width="160" height="160" style="border-style: none">
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #495057">LTE RSS</keyword>
+                  <keyword style="background-color: #495057">Positioning</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="https://ieeexplore.ieee.org/document/8793365" target="_blank">
                     <papertitle>Smartphone Application to Estimate Distances from LTE Base Stations Based on Received
                       Signal Strength Measurements</papertitle>
@@ -507,6 +594,9 @@
                   <img src='images/haptic.png' alt="lteapp" width="160" height="160" style="border-style: none">
                 </td>
                 <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #495057">Haptic</keyword>
+                  <keyword style="background-color: #495057">Human-Robot Interaction</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
                   <a href="https://ieeexplore.ieee.org/document/8571937" target="_blank">
                     <papertitle>Observation of Human Trajectory in Response to Haptic Feedback from Mobile Robot
                     </papertitle>
