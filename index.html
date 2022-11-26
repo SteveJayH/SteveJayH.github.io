@@ -172,6 +172,7 @@
                   document.getElementById("RLP").style.display = "none";
                   document.getElementById("WHOLEEXM").style.display = "none";
                   document.getElementById("HAPTIC").style.display = "none";
+                  document.getElementById("impasto").style.display = "none";
                 }
                 else if (!(author1_checked) && author2_checked) {
                   document.getElementById("support").style.display = "none";
@@ -202,13 +203,15 @@
                   document.getElementById("HAPTIC").style.display = "none";
                 }
                 else if (!(journal1_checked) && journal2_checked) {
+                  document.getElementById("impasto").style.display = "none";
                   document.getElementById("support").style.display = "none";
                   document.getElementById("RLP").style.display = "none";
                   document.getElementById("WHOLEEXM").style.display = "none";
                   document.getElementById("3DM").style.display = "none";
                 }
                 else {
-                  document.getElementById("RLP").style.display = "";
+                  document.getElementById("impasto").style.display = "none";
+                  document.getElementById("support").style.display = "none";
                   document.getElementById("reals").style.display = "";
                   document.getElementById("3DM").style.display = "";
                   document.getElementById("BEAR").style.display = "";
@@ -221,7 +224,6 @@
             </script>
 
             <tbody>
-
               <tr id="reals" onmouseout="_reals_stop()" onmouseover="_reals_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
@@ -264,6 +266,58 @@
                 </td>
               </tr>
 
+              <tr id="impasto" onmouseout="_impasto_stop()" onmouseover="_impasto_start()">
+                <td style="padding:20px;width:16%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='_impasto_image'>
+                      <img src='images/impasto_after.png' width="160">
+                    </div>
+                    <img src='images/impasto_before.png' width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function _impasto_start() {
+                      document.getElementById('_impasto_image').style.opacity = "1";
+                    }
+
+                    function _impasto_stop() {
+                      document.getElementById('_impasto_image').style.opacity = "0";
+                    }
+                    _impasto_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:84%;vertical-align:middle">
+                  <keyword style="background-color: #e63946">Denoising</keyword>
+                  <keyword style="background-color: #495057">Voltage Imaging</keyword>
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
+                  <a href="https://www.biorxiv.org/content/10.1101/2022.11.22.517463v1" target="_blank">
+                    <papertitle>IMPASTO: Multiplexed cyclic imaging without signal removal via self-supervised neural
+                      unmixing
+                    </papertitle>
+                  </a>
+                  <br>
+                  <a href="https://scholar.google.com/citations?user=YAywWWMAAAAJ&hl=ko&oi=sra" target="_blank">Hyunwoo
+                    Kim</a>*,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Seoungbin Bae</a>*,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Junmo Cho</a>*,
+                  <a href="https://www.researchgate.net/scientific-contributions/Hoyeon-Nam-2220743474"
+                    target="_blank">Howeon Nam</a>,
+                  <a href="https://www.researchgate.net/scientific-contributions/Junyoung-Seo-2185428786"
+                    target="_blank">Junyoung Seo</a>,
+                  <strong>Seungjae Han</strong>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Euiin Yi</a>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Eunsu Kim</a>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>,
+                  <a href="https://sites.google.com/site/jbchang03/pi?pli=1" target="_blank">Jae-Byum
+                    Chang</a>
+                  <br>
+                  <em>bioRxiv</em>, 2022
+                  <br>
+                  <a href="https://www.biorxiv.org/content/10.1101/2022.11.22.517463v1" target="_blank">paper</a>
+                  <p>
+                    Erasureless cyclic imaging method with self-supervised spectral unmixing.
+                  </p>
+                </td>
+              </tr>
 
               <tr id="support" onmouseout="_support_stop()" onmouseover="_support_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
