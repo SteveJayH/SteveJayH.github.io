@@ -82,7 +82,7 @@
                   </p>
                   <p style="text-align:center">
                     <a href="mailto:jay0118@kaist.ac.kr">Email</a> &nbsp/&nbsp
-                    <a href="data/SeungjaeHan_CV_indd_letter_Jan_2023.pdf" target="_blank">CV</a> &nbsp/&nbsp
+                    <a href="data/SeungjaeHan_CV_indd_2023_May.pdf" target="_blank">CV</a> &nbsp/&nbsp
                     <a href="https://scholar.google.com/citations?hl=en&user=7GP2JsYAAAAJ" target="_blank">Google
                       Scholar</a>
                     &nbsp/&nbsp
@@ -155,7 +155,7 @@
                     author
                     (5)</label> &nbsp;
                   <label><input onchange="author()" id="author2" type="checkbox" name="first_author">
-                    Co-author (4)</label>
+                    Co-author (5)</label>
                 </td>
               </tr>
 
@@ -168,7 +168,7 @@
                   style="padding-left:20px;padding-right:20px;padding-top:5px;padding-bottom:5px;width:84%;vertical-align:middle">
 
                   <label><input onchange="journal()" id="journal1" type="checkbox" name="journal"> Journal
-                    (5)</label>
+                    (6)</label>
                   &nbsp;
                   <label><input onchange="journal()" id="journal2" type="checkbox" name="journal"> Conference
                     (4)</label>
@@ -187,6 +187,7 @@
                   document.getElementById("WHOLEEXM").style.display = "none";
                   document.getElementById("HAPTIC").style.display = "none";
                   document.getElementById("impasto").style.display = "none";
+                  document.getElementById("jove").style.display = "none";
                 }
                 else if (!(author1_checked) && author2_checked) {
                   document.getElementById("support").style.display = "none";
@@ -196,6 +197,7 @@
                   document.getElementById("LTE").style.display = "none";
                 }
                 else {
+                  document.getElementById("jove").style.display = "";
                   document.getElementById("impasto").style.display = "";
                   document.getElementById("support").style.display = "";
                   document.getElementById("reals").style.display = "";
@@ -218,6 +220,7 @@
                   document.getElementById("HAPTIC").style.display = "none";
                 }
                 else if (!(journal1_checked) && journal2_checked) {
+                  document.getElementById("jove").style.display = "none";
                   document.getElementById("impasto").style.display = "none";
                   document.getElementById("support").style.display = "none";
                   document.getElementById("RLP").style.display = "none";
@@ -225,6 +228,7 @@
                   document.getElementById("3DM").style.display = "none";
                 }
                 else {
+                  document.getElementById("jove").style.display = "";
                   document.getElementById("impasto").style.display = "";
                   document.getElementById("support").style.display = "";
                   document.getElementById("reals").style.display = "";
@@ -239,6 +243,54 @@
             </script>
 
             <tbody>
+              <tr id="jove" onmouseout="_jove_stop()" onmouseover="_jove_start()">
+                <td style="padding:20px;width:16%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='_jove_image'>
+                      <img src='images/jove.jpg' width="160px" height="160px">
+                    </div>
+                    <img src='images/jove.jpg' width="160px" height="160px">
+                  </div>
+                  <script type="text/javascript">
+                    function _jove_start() {
+                      document.getElementById('_jove_image').style.opacity = "1";
+                    }
+
+                    function _jove_stop() {
+                      document.getElementById('_jove_image').style.opacity = "0";
+                    }
+                    _jove_stop()
+                  </script>
+                </td>
+                <td style="padding:20px;width:84%;vertical-align:middle">
+                  <hr style="height:3pt; visibility:hidden; margin:0pt" />
+                  <a href="https://www.jove.com/kr/t/65218/in-vivo-whole-brain-imaging-zebrafish-larvae-using-three-dimensional"
+                    target="_blank">
+                    <papertitle>In vivo whole-brain imaging of zebrafish larvae using three-dimensional fluorescence microscopy
+                    </papertitle>
+                  </a>
+                  <br>
+                  <a href="https://sites.google.com/view/eunseocho/main" target="_blank">Eun-Seo Cho</a>,
+                  <strong>Seungjae Han</strong>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Gyuri Kim</a>,
+                  <a href="https://www.minhoeom.com/" target="_blank">Minho Eom</a>,
+                  <a href="https://www.researchgate.net/scientific-contributions/Kang-Han-Lee-2107619192"
+                  target="_blank">Kang-Han
+                  Lee</a>,
+                  <a href="https://scholar.google.com/citations?user=0G8geQsAAAAJ&hl=ent" target="_blank">Cheol-Hee
+                  Kim</a>,
+                  <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>
+                  <br>
+                  <em>Journal of Visualized Experiments</em>, 2023
+                  <br>
+                  <a href="https://www.jove.com/kr/t/65218/in-vivo-whole-brain-imaging-zebrafish-larvae-using-three-dimensional"
+                    target="_blank">paper</a> / <a href="https://github.com/NICALab/Zebrafish-brain-visualization" target="_blank">code</a>
+                  <p>
+                    Effective and reproducible protocol for whole-brain imaging of larval zebrafish using three-dimensional fluorescence microscopy.
+                  </p>
+                </td>
+              </tr>
+
               <tr id="reals" onmouseout="_reals_stop()" onmouseover="_reals_start()">
                 <td style="padding:20px;width:16%;vertical-align:middle">
                   <div class="one">
