@@ -123,6 +123,11 @@ a:hover {
   text-decoration: none;
 }
 
+em{
+  font-style: italic;
+  font-weight: bold;
+}
+
 body,
 td,
 th,
