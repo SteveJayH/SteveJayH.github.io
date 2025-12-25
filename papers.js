@@ -204,14 +204,10 @@ function addPaperCard(config) {
     contentDiv.className = 'paper-content';
 
     // Add title
-    const titleLink = document.createElement('a');
-    titleLink.href = config.titleLink || '#';
-    if (config.titleLink) titleLink.target = '_blank';
     const titleDiv = document.createElement('div');
     titleDiv.className = 'paper-title';
     titleDiv.textContent = config.title || '';
-    titleLink.appendChild(titleDiv);
-    contentDiv.appendChild(titleLink);
+    contentDiv.appendChild(titleDiv);
 
     // Add authors
     if (config.authors && config.authors.length > 0) {
