@@ -203,20 +203,6 @@ function addPaperCard(config) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'paper-content';
 
-    // Add keywords if provided
-    if (config.keywords && config.keywords.length > 0) {
-        const keywordsDiv = document.createElement('div');
-        keywordsDiv.className = 'paper-keywords';
-        config.keywords.forEach(kw => {
-            const keywordSpan = document.createElement('span');
-            keywordSpan.className = 'keyword';
-            keywordSpan.style.backgroundColor = kw.color || '#495057';
-            keywordSpan.textContent = kw.text;
-            keywordsDiv.appendChild(keywordSpan);
-        });
-        contentDiv.appendChild(keywordsDiv);
-    }
-
     // Add title
     const titleLink = document.createElement('a');
     titleLink.href = config.titleLink || '#';
@@ -234,13 +220,7 @@ function addPaperCard(config) {
         config.authors.forEach((author, index) => {
             if (index > 0) authorsDiv.appendChild(document.createTextNode(', '));
 
-            if (author.link) {
-                const authorLink = document.createElement('a');
-                authorLink.href = author.link;
-                authorLink.target = '_blank';
-                authorLink.textContent = author.name;
-                authorsDiv.appendChild(authorLink);
-            } else if (author.isStrong) {
+            if (author.isStrong) {
                 const strong = document.createElement('strong');
                 strong.textContent = author.name;
                 authorsDiv.appendChild(strong);
@@ -330,7 +310,7 @@ function initializePapers() {
         links: [
             { type: "paper", url: "https://ieeexplore.ieee.org/document/8571937" }
         ],
-        description: "Analyze the walking trajectory of a blindfolded participant receiving haptic feedback from a mobile robot. Developed a mobile robot system with a haptic device and algorithm for appropriate haptic feedback.",
+        description: "Mobile-robot haptic guidance system and trajectory analysis for blindfolded walking experiments.",
         highlighted: false
     });
 
@@ -358,7 +338,7 @@ function initializePapers() {
         links: [
             { type: "paper", url: "https://ieeexplore.ieee.org/document/8793365" }
         ],
-        description: "Smartphone application that calculates predicted distances to near base stations based on received signal strength. Research for LTE-based positioning where GPS signal is unavailable.",
+        description: "LTE-based smartphone positioning via RSSI-to-distance prediction when GPS is unavailable.",
         highlighted: false
     });
 
@@ -386,7 +366,7 @@ function initializePapers() {
             { type: "poster", url: "/images/MICCAI_BEAR_poster_v2.pdf" },
             { type: "wallpaper", url: "images/black_zebrafish.png" }
         ],
-        description: "Fast and scalable gradient descent based Robust PCA algorithm. Achieves an order of magnitude speed improvement, demonstrated with calcium imaging dataset as large as tens of gigabytes.",
+        description: "Scalable gradient-descent Robust PCA with order-of-magnitude speedups on tens-of-GB calcium imaging datasets.",
         highlighted: true
     });
 
@@ -417,7 +397,7 @@ function initializePapers() {
             { type: "paper", url: "https://opg.optica.org/oe/fulltext.cfm?uri=oe-29-20-32700&id=459843" },
             { type: "code", url: "https://github.com/NICALab/3DM" }
         ],
-        description: "Fast computational microscopy for the volumetric imaging of neural activity, using two neural networks which perform sparse decomposition and deconvolution.",
+        description: "Fast volumetric computational microscopy via sparse decomposition and deconvolution networks for neural activity imaging.",
         highlighted: false
     });
 
@@ -529,7 +509,7 @@ function initializePapers() {
             { type: "paper", url: "https://www.jove.com/kr/t/65218/in-vivo-whole-brain-imaging-zebrafish-larvae-using-three-dimensional" },
             { type: "code", url: "https://github.com/NICALab/Zebrafish-brain-visualization" }
         ],
-        description: "Effective and reproducible protocol for whole-brain imaging of larval zebrafish using three-dimensional fluorescence microscopy.",
+        description: "Effective and reproducible protocol for whole-brain imaging of larval zebrafish using 3D fluorescence microscopy.",
         highlighted: false
     });
 
@@ -581,7 +561,7 @@ function initializePapers() {
             { type: "code", url: "https://github.com/NICALab/SUPPORT" },
             { type: "data", url: "https://zenodo.org/record/7330257#.Y3mv_HZByp0" }
         ],
-        description: "Self-supervised learning method for removing Poisson-Gaussian noise in voltage imaging data as well as a wide range of microscopy images.",
+        description: "Self-supervised Poisson–Gaussian denoising for voltage imaging and broader microscopy modalities.",
         highlighted: true
     });
 
@@ -644,7 +624,7 @@ function initializePapers() {
         ],
         venue: { name: "ACS Nano", year: 2025 },
         links: [],
-        description: "Expansion microscopy (ExM) for whole vertebrates. Demonstrated nanoscale resolution imaging of whole zebrafish larvae and mouse embryos by expanding them fourfold.",
+        description: "Whole-vertebrate expansion microscopy enabling nanoscale imaging of zebrafish larvae and mouse embryos.",
         highlighted: false
     });
 
@@ -670,7 +650,7 @@ function initializePapers() {
             extras: '<strong>(<span style="color: #FD3029;">Selected for oral presentation</span>)</strong>'
         },
         links: [],
-        description: "We report the theoretical design principles of self-supervised denoising networks and demonstrate that a U-Net-shaped blind spot network achieves superior denoising performance at low computational cost.",
+        description: "Design principles for self-supervised denoising; U-Net blind-spot network with strong quality at low compute.",
         highlighted: false
     });
 
@@ -712,7 +692,7 @@ function initializePapers() {
             extras: '<strong>(<a href="https://breakthroughs.kaist.ac.kr/sub02/view/id/4062" target="_blank" style="color: #FD3029; text-decoration: underline;">KAIST Breakthrough</a>, <a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=43590" target="_blank" style="color: #FD3029; text-decoration: underline;">KAIST News</a>, <a href="https://www.nature.com/articles/s41928-025-01341-1" target="_blank" style="color: #FD3029; text-decoration: underline;">Nature Electronics News & Views</a>, <a href="https://www.nature.com/articles/s41928-025-01361-x" target="_blank" style="color: #FD3029; text-decoration: underline;">Nature Electronics Editorials</a>)</strong>'
         },
         links: [],
-        description: "We report a neuromorphic analog computing platform with self-calibration that can perform self-supervised video processing in real time.",
+        description: "Neuromorphic analog platform with self-calibration for real-time self-supervised video processing.",
         highlighted: true
     });
 }
