@@ -623,7 +623,9 @@ function initializePapers() {
             { name: "Jae-Byum Chang", link: "https://sites.google.com/site/jbchang03/pi?pli=1", isCorresponding: true }
         ],
         venue: { name: "ACS Nano", year: 2025 },
-        links: [],
+        links: [
+            { type: "paper", url: "https://pubs.acs.org/doi/10.1021/acsnano.4c14791" }
+        ],
         description: "Whole-vertebrate expansion microscopy enabling nanoscale imaging of zebrafish larvae and mouse embryos.",
         highlighted: false
     });
@@ -649,7 +651,10 @@ function initializePapers() {
             year: 2025,
             extras: '<strong>(<span style="color: #FD3029;">Selected for oral presentation</span>)</strong>'
         },
-        links: [],
+        links: [
+            { type: "paper", url: "https://openaccess.thecvf.com/content/WACV2025/html/Yu_Design_Principles_of_Multi-Scale_J-Invariant_Networks_for_Self-Supervised_Image_Denoising_WACV_2025_paper.html" },
+            { type: "code", url: "https://github.com/NICALab/UBSN" }
+        ],
         description: "Design principles for self-supervised denoising; U-Net blind-spot network with strong quality at low compute.",
         highlighted: false
     });
@@ -691,7 +696,9 @@ function initializePapers() {
             year: 2025,
             extras: '<strong>(<a href="https://breakthroughs.kaist.ac.kr/sub02/view/id/4062" target="_blank" style="color: #FD3029; text-decoration: underline;">KAIST Breakthrough</a>, <a href="https://news.kaist.ac.kr/news/html/news/?mode=V&mng_no=43590" target="_blank" style="color: #FD3029; text-decoration: underline;">KAIST News</a>, <a href="https://www.nature.com/articles/s41928-025-01341-1" target="_blank" style="color: #FD3029; text-decoration: underline;">Nature Electronics News & Views</a>, <a href="https://www.nature.com/articles/s41928-025-01361-x" target="_blank" style="color: #FD3029; text-decoration: underline;">Nature Electronics Editorials</a>)</strong>'
         },
-        links: [],
+        links: [
+            { type: "paper", url: "https://www.nature.com/articles/s41928-024-01318-6" }
+        ],
         description: "Neuromorphic analog platform with self-calibration for real-time self-supervised video processing.",
         highlighted: true
     });
