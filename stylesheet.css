@@ -724,7 +724,6 @@ body {
 .paper-links a {
   color: var(--accent-color);
   text-decoration: none;
-  margin-right: 1rem;
 }
 
 .paper-links a:hover {
