@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Seungjae Han</title>
+
+  <meta property="og:title" content="Seungjae Han">
+  <meta property="og:description" content="Personal blog of Seungjae Han">
+  <meta property="og:image" content="https://stevejayh.github.io/images/profile_image4.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <meta name="google-site-verification" content="KW_ayW1gQdF0184iGWpIiq_525q6czV_-af5SLLA4Hk" />
+  <meta name="author" content="Seungjae Han">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+
+  <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#home">Seungjae Han</a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="data/SeungjaeHan_CV_indd_2025_10.pdf" target="_blank">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-name">Seungjae Han</h1>
+          <p class="hero-subtitle">Computational Neuroscience · Machine Learning</p>
+          <p class="hero-description">
+            I am a Ph.D. student at <a href="https://nica.kaist.ac.kr/" target="_blank">KAIST</a> (<a href="https://nica.kaist.ac.kr/" target="_blank">NICA Lab</a>), advised by Professor
+            <a href="https://nica.kaist.ac.kr/people" target="_blank">Young-Gyu Yoon</a>.
+            My work develops <strong>computational methods for large-scale neural recordings</strong>, spanning acquisition, denoising, and quantitative interpretation of brain-wide optical data. I am broadly interested in bridging measurement and inference by designing algorithms that are robust under noise and distribution shift, computationally efficient, and scientifically interpretable.
+            <br><br>
+            My research includes self-supervised microscopy denoising and video processing, with publications in <strong><em style="color: #DC143C;">Nature Methods</em></strong> (cover article, 2023) and <strong><em style="color: #DC143C;">Nature Electronics</em></strong> (2025), alongside contributions in computer vision and computational imaging. I received the <a
+              href="https://www.sfn.org/meetings/meeting-awards/trainee-professional-development-award"
+              target="_blank">SfN Trainee Professional Development Award (2023)</a>, the <a href="https://akneuro.org/studentawardees/" target="_blank">AKN Outstanding Research Award (2023)</a>, and the KAIST Outstanding Paper Award (2024), and <a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers" target="_blank">Top Reviewer Recognition at NeurIPS (2024)</a>.
+          </p>
+          <div class="hero-links">
+            <a href="mailto:jay0118@kaist.ac.kr">Email</a>
+            <span>/</span>
+            <a href="data/SeungjaeHan_CV_indd_2025_10.pdf" target="_blank">CV</a>
+            <span>/</span>
+            <a href="https://scholar.google.com/citations?hl=en&user=7GP2JsYAAAAJ" target="_blank">Google Scholar</a>
+            <span>/</span>
+            <a href="https://github.com/SteveJayH/" target="_blank">Github</a>
+            <span>/</span>
+            <a href="https://www.linkedin.com/in/seungjaehan/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="profile-carousel-wrapper">
+            <button class="profile-carousel-btn profile-carousel-prev" onclick="moveProfileCarousel(-1)">‹</button>
+            <div class="profile-carousel-track" id="profileCarouselTrack">
+              <div class="profile-carousel-slide active">
+                <a href="images/seungjae_optroom.png">
+                  <img src="images/seungjae_optroom.png" alt="profile photo" class="profile-img">
+                </a>
+              </div>
+              <div class="profile-carousel-slide">
+                <a href="images/profile_neurips.jpg">
+                  <img src="images/profile_neurips.jpg" alt="profile photo" class="profile-img">
+                </a>
+              </div>
+            </div>
+            <button class="profile-carousel-btn profile-carousel-next" onclick="moveProfileCarousel(1)">›</button>
+            <div class="profile-carousel-dots">
+              <span class="profile-dot active" onclick="setCurrentProfileSlide(1)"></span>
+              <span class="profile-dot" onclick="setCurrentProfileSlide(2)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Section -->
+  <section class="section research-section" id="research">
+    <div class="container">
+      <h2 class="section-title">Research</h2>
+
+      <!-- Representative Papers Carousel -->
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">‹</button>
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide active">
+              <a href="#" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="carousel-image" style="background-image: url('images/natelect_banner.png');">
+                  <div class="carousel-overlay"></div>
+                  <div class="carousel-content">
+                    <div class="carousel-title">Self-supervised video processing with self-calibration on an analogue
+                      computing platform based on a selector-less memristor array</div>
+                    <div class="carousel-venue"><em>Nature Electronics</em>, 2025</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="carousel-slide">
+              <a href="https://www.nature.com/articles/s41592-023-02005-8" target="_blank"
+                style="text-decoration: none; color: inherit;">
+                <div class="carousel-image" style="background-image: url('images/natmeth_banner.png');">
+                  <div class="carousel-overlay"></div>
+                  <div class="carousel-content">
+                    <div class="carousel-title">Statistically unbiased prediction enables accurate denoising of voltage
+                      imaging data</div>
+                    <div class="carousel-venue"><em>Nature Methods</em>, 2023</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">›</button>
+          <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <span class="filter-label">Filter:</span>
+        <div class="filter-inline">
+          <span class="filter-category">Author type:</span>
+          <label><input type="checkbox" id="author1" onchange="author()"> First author (8)</label>
+          <label><input type="checkbox" id="author2" onchange="author()"> Co-author (5)</label>
+          <span class="filter-separator">|</span>
+          <span class="filter-category">Paper type:</span>
+          <label><input type="checkbox" id="journal1" onchange="journal()"> Journal (8)</label>
+          <label><input type="checkbox" id="journal2" onchange="journal()"> Conference (5)</label>
+        </div>
+      </div>
+
+      <p class="coauthor-note">* co-first authors, ** co-corresponding authors</p>
+
+      <div class="papers-grid">
+        <!-- Papers will be loaded via addPaperCard() function -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section awards-section" id="awards">
+    <div class="container">
+      <h2 class="section-title">Awards & Honors</h2>
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-image-wrapper">
+            <img src="images/awards_honors/kaistlogo.jpeg" alt="KAIST" class="award-image award-image-small">
+          </div>
+          <div class="award-content">
+            <div class="award-title">[2024] KAIST Graduate Student Outstanding Paper Award</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <div class="award-image-wrapper">
+            <img src="images/awards_honors/NeurIPS_logo.png" alt="NeurIPS" class="award-image award-image-small">
+          </div>
+          <div class="award-content">
+            <div class="award-title">[2024] <a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers" target="_blank">Top reviewer of NeurIPS 2024</a> & Complimentary registration</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/awards_honors/SFN-official-logo.png" alt="SFN" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2023] Trainee Professional Development Award</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/AKN_Logo_Header_Retina.png" alt="AKN" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2023] <a href="https://akneuro.org/studentawardees/" target="_blank">AKN Outstanding Research Award</a> (IBS/AKN Pre-doctoral award)</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/awards_honors/kaist_ee_crop.png" alt="KAIST EE" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2023] Best Teaching Assistant Award (Course: Signals and Systems)</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/awards_honors/kofac.png" alt="KOFAC" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2019] Undergraduate Research Program</div>
+            <div class="award-description">
+              Research fund (₩5.2M) granted, <span style="color: #FD3029;"><strong>Outstanding Project
+                  Award</strong></span><br><br>
+              Sound source localization in the indoor multipath environment based on machine learning<br>
+              <strong>Seungjae Han</strong>, Sanghyun Kim, PI: <a href="https://www.jwseo.com/" target="_blank">Jiwon
+                Seo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/awards_honors/yonsei_bogazici.png" alt="Yonsei Boğaziçi" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2019] Short-term visiting researcher to Boğaziçi University, Turkey</div>
+            <div class="award-description">
+              Travel and lodging cost<br><br>
+              Visited <a href="https://colors.cmpe.boun.edu.tr/" target="_blank">COLORS Lab</a>, advised by <a
+                href="https://www.cmpe.boun.edu.tr/~emre/" target="_blank">Emre Ugur</a>.
+            </div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <img src="images/awards_honors/ministry.png" alt="Ministry" class="award-image">
+          <div class="award-content">
+            <div class="award-title">[2017-2019] IT Consilience Creative Program</div>
+            <div class="award-description">
+              Tuition waiver & monthly stipend for whole undergraduate period
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-content">
+        <p>Feel free to reach out via email or connect through the links below.</p>
+        <div class="contact-links">
+          <a href="mailto:jay0118@kaist.ac.kr">Email</a>
+          <span>/</span>
+          <a href="data/SeungjaeHan_CV_indd_2025_10.pdf" target="_blank">CV</a>
+          <span>/</span>
+          <a href="https://scholar.google.com/citations?hl=en&user=7GP2JsYAAAAJ" target="_blank">Google Scholar</a>
+          <span>/</span>
+          <a href="https://github.com/SteveJayH/" target="_blank">Github</a>
+          <span>/</span>
+          <a href="https://www.linkedin.com/in/seungjaehan/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-credit">
+        © 2025 Seungjae Han. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="navbar.js"></script>
+  <script type="text/javascript" src="papers.js"></script>
+
+</body>
+
+</html>

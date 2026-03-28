@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications — Seungjae Han</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:         #FAFAF8;
+    --surface:    #F2F1ED;
+    --surface-w:  #F5F4F0;
+    --border:     #E0DED7;
+    --border2:    #C8C5BC;
+    --ink:        #1C1B18;
+    --ink-70:     #3D3C38;
+    --ink-45:     #767470;
+    --ink-20:     #D6D4CE;
+    --accent:     #2E5F96;
+    --accent-bg:  #E6EDF6;
+    --red:        #8C3232;
+    --red-bg:     #F5EAEA;
+    --serif:      'Lora', Georgia, serif;
+    --sans:       'Inter', system-ui, sans-serif;
+    --mono:       'JetBrains Mono', monospace;
+    --max:        780px;
+    --pad:        48px;
+    --tr:         0.18s ease;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: calc(var(--max) + var(--pad)*2);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244,243,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: calc(var(--max) + var(--pad)*2);
+    margin: 0 auto; padding: 0 var(--pad);
+    height: 50px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    font-size: 12.5px; font-weight: 400; color: var(--ink-70);
+    padding: 5px 10px; border-radius: 5px;
+    transition: color var(--tr), background var(--tr);
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--surface); text-decoration: none; }
+  .nav-links a.active { color: var(--ink); font-weight: 500; }
+
+  .pub-header {
+    padding: 64px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-label {
+    font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-45); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 400; line-height: 1.1;
+    color: var(--ink); letter-spacing: -0.01em; margin-bottom: 10px;
+  }
+  .pub-sub { font-size: 13px; color: var(--ink-45); font-weight: 300; line-height: 1.6; }
+
+  .stats {
+    display: flex; gap: 36px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-num { font-family: var(--serif); font-size: 26px; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+  .stat-label { font-family: var(--mono); font-size: 10px; color: var(--ink-45); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .filter-label { font-family: var(--mono); font-size: 10px; color: var(--ink-45); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 2px; }
+  .fbtn {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em;
+    padding: 5px 11px; border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--surface-w); color: var(--ink-45);
+    cursor: pointer; transition: all var(--tr);
+  }
+  .fbtn:hover { border-color: var(--border2); color: var(--ink-70); }
+  .fbtn.on { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+  .pub-body { padding: 40px 0; overflow: visible; }
+  .year-group { margin-bottom: 44px; position: relative; }
+  .year-label {
+    font-family: var(--serif); font-size: 13px; font-style: italic;
+    color: var(--ink-45); padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-list { list-style: none; position: relative; }
+  .pub-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub-num { font-family: var(--mono); font-size: 10px; color: var(--ink-45); padding-top: 3px; text-align: right; }
+  .pub-inner { display: grid; gap: 5px; }
+  .pub-title { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.45; }
+
+  .pub-item.sel {
+    position: relative;
+  }
+  .pub-item.sel::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--red);
+  }
+  .pub-item.sel .pub-num { color: var(--red); font-weight: 500; }
+
+  .pub-authors { font-size: 12px; color: var(--ink-45); line-height: 1.65; }
+  .pub-authors .me {
+    color: var(--ink-70); font-weight: 500;
+    text-decoration: underline; text-decoration-color: var(--border2); text-underline-offset: 2px;
+  }
+  .venue-row { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-top: 2px; }
+  .venue { font-family: var(--serif); font-size: 13px; font-style: italic; color: var(--red); }
+  .vnote { font-size: 11.5px; color: var(--ink-45); }
+
+  .badge {
+    display: inline-block; font-family: var(--mono);
+    font-size: 9.5px; letter-spacing: 0.05em;
+    padding: 2px 7px; border-radius: 3px;
+  }
+  .b-red  { background: var(--red-bg);    color: var(--red); }
+  .b-blue { background: var(--accent-bg); color: var(--accent); }
+
+  .pub-item.hidden { display: none; }
+  .year-group.hidden { display: none; }
+
+  footer {
+    padding: 26px 0 40px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-l { font-family: var(--mono); font-size: 10px; color: var(--ink-45); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  @media (max-width: 600px) {
+    :root { --pad: 20px; }
+    .pub-item { grid-template-columns: 22px 1fr; gap: 10px; }
+    .stats { gap: 20px; }
+    .nav-links a { padding: 5px 7px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Seungjae Han</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="pub-header">
+    <p class="pub-label">Full list</p>
+    <h1>Publications</h1>
+    <p class="pub-sub">* co-first authors &nbsp;·&nbsp; ** co-corresponding authors<br>
+    <strong style="color:var(--ink-70)">S. Han</strong> (underlined) indicates the author's name.</p>
+  </div>
+
+  <div class="stats">
+    <div>
+      <div class="stat-num" id="stat-total">16</div>
+      <div class="stat-label">Total papers</div>
+    </div>
+    <div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">Nature family</div>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="fbtn on" onclick="setFilter('all',this)">All</button>
+    <button class="fbtn" onclick="setFilter('sel',this)">Selected</button>
+    <button class="fbtn" onclick="setFilter('journal',this)">Journal</button>
+    <button class="fbtn" onclick="setFilter('conf',this)">Conference</button>
+    <button class="fbtn" onclick="setFilter('2026',this)">2026</button>
+    <button class="fbtn" onclick="setFilter('2025',this)">2025</button>
+    <button class="fbtn" onclick="setFilter('2024',this)">2024</button>
+    <button class="fbtn" onclick="setFilter('2023',this)">2023</button>
+    <button class="fbtn" onclick="setFilter('pre',this)">— 2022</button>
+  </div>
+
+  <div class="pub-body">
+
+    <div class="year-group" data-year="2026">
+      <div class="year-label">2026</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="journal" data-year="2026">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Abunmix enables the simple and robust multiplexed immunofluorescence imaging</div>
+            <div class="pub-authors">W. La*, S. Bae*, J. Seo*, H. Yu*, J. Cho, H. Kim, H. Nam, <span class="me">S. Han</span>, E. Yi, E. Kim, C. Kang, H. Shin, C. W. Song, Y.-G. Yoon**, J.-B. Chang**.</div>
+            <div class="venue-row"><span class="venue">View</span><span class="vnote">(accepted)</span></div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2026">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Event-based optical imaging and reconstruction of in vivo neuronal and vascular dynamics</div>
+            <div class="pub-authors">J. Yoon*, S. Kim*, <span class="me">S. Han*</span>, M. Eom, E.-S. Cho, F. D. Nezhad, S. Hong, E. Kim, I.-H. Park, E. Chung, K. Shin, Y.-G. Yoon**, M. Choi**.</div>
+            <div class="venue-row"><span class="venue">PhotoniX</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2025">
+      <div class="year-label">2025</div>
+      <ul class="pub-list">
+        <li class="pub-item sel" data-type="journal" data-year="2025">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Self-supervised video processing with self-calibration on an analogue selector-less memristor array-based platform</div>
+            <div class="pub-authors">H. Jeong*, <span class="me">S. Han*</span>, S.-O. Park, T. R. Kim, J. Bae, T.-H. Jang, Y. Cho, S. Seo, H.-J. Jeong, S. Park, T. Park, J. Oh, J. Park, D. Jeon, I. Kwon, Y.-G. Yoon**, S. Choi**.</div>
+            <div class="venue-row">
+              <span class="venue">Nature Electronics</span>
+              <span class="vnote">News &amp; Views · Editorial · KAIST Breakthroughs</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2025">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Nanoscale resolution imaging of the whole mouse embryos and larval zebrafish using expansion microscopy</div>
+            <div class="pub-authors">J. Sim*, C. E. Park*, I. Cho*, K. Min, M. Eom, <span class="me">S. Han</span>, H. Jeon, E.-S. Cho, Y. Lee, Y. H. Yun, S. Lee, D.-H. Cheon, J. Kim, M. Kim, H.-J. Cho, J.-W. Park, A. Kumar, Y. Chong, J. S. Kang, K. D. Piatkevich, E. E. Jung, D.-S. Kang, S.-K. Kwon, J. Kim, K.-J. Yoon, J.-S. Lee, C.-H. Kim, M. Choi, J. W. Kim, M.-R. Song, H. J. Choi, E. S. Boyden, Y.-G. Yoon**, J.-B. Chang**.</div>
+            <div class="venue-row"><span class="venue">ACS Nano</span></div>
+          </div>
+        </li>
+
+        <li class="pub-item" data-type="conf" data-year="2025">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Design Principles of Multi-Scale J-invariant Networks for Self-Supervised Image Denoising</div>
+            <div class="pub-authors">H. Yu*, <span class="me">S. Han*</span>, Y.-G. Yoon.</div>
+            <div class="venue-row">
+              <span class="venue">WACV 2025</span>
+              <span class="vnote">Oral</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2024">
+      <div class="year-label">2024</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="journal" data-year="2024">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">In Vivo Optical Clearing of Mammalian Brain</div>
+            <div class="pub-authors">G. T. Franzesi*, I. Gupta*, M. Hu, K. Piatkevich, M. Yildirim, J.-P. Zhao, M. Eom, <span class="me">S. Han</span>, D. Park, H. Andaraarachchi, Z. Li, J. Greenhagen, A. M. Islam, P. Vashishtha, Z. Yaqoob, N. Pak, A. D. Wissner-Gross, D. A. Martin-Alarcon, J. J. Veinot, P. T. C. So, U. Kortshagen, Y.-G. Yoon, M. Sur**, E. S. Boyden**.</div>
+            <div class="venue-row"><span class="venue">bioRxiv</span></div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2024">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">From Pixels to Information: Artificial Intelligence in Fluorescence Microscopy</div>
+            <div class="pub-authors"><span class="me">S. Han</span>, J. Y. You, M. Eom, S. Ahn, E.-S. Cho, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">Advanced Photonics Research</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2023">
+      <div class="year-label">2023</div>
+      <ul class="pub-list">
+        <li class="pub-item sel" data-type="journal" data-year="2023">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Statistically unbiased prediction enables accurate denoising of voltage imaging data</div>
+            <div class="pub-authors">M. Eom*, <span class="me">S. Han*</span>, P. Park*, G. Kim, E.-S. Cho, J. Sim, K.-H. Lee, S. Kim, H. Tian, U. L. Böhm, E. Lowet, H. Tseng, J. Choi, S. E. Lucia, S. H. Ryu, M. Rózsa, S. Chang, P. Kim, X. Han, K. D. Piatkevich, M. Choi, C.-H. Kim, A. E. Cohen, J.-B. Chang, Y.-G. Yoon.</div>
+            <div class="venue-row">
+              <span class="venue">Nature Methods</span>
+              <span class="vnote">Cover · KAIST Breakthroughs</span>
+            </div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2023">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">In vivo whole-brain imaging of zebrafish larvae using three-dimensional fluorescence microscopy</div>
+            <div class="pub-authors">E.-S. Cho, <span class="me">S. Han</span>, G. Kim, M. Eom, K.-H. Lee, C.-H. Kim, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">Journal of Visualized Experiments</span></div>
+          </div>
+        </li>
+
+        <li class="pub-item" data-type="conf" data-year="2023">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Robust and Efficient Alignment of Calcium Imaging Data through Simultaneous Low Rank and Sparse Decomposition</div>
+            <div class="pub-authors">J. Cho*, <span class="me">S. Han*</span>, E.-S. Cho, K. Shin, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">WACV 2023</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2022">
+      <div class="year-label">2022</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="journal" data-year="2022">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">IMPASTO: Multiplexed cyclic imaging without signal removal via self-supervised neural unmixing</div>
+            <div class="pub-authors">H. Kim*, S. Bae*, J. Cho, H. Nam, J. Seo, <span class="me">S. Han</span>, E. Yi, E. Kim, Y.-G. Yoon**, J.-B. Chang**.</div>
+            <div class="venue-row"><span class="venue">bioRxiv</span><span class="vnote">Cover · KAIST Breakthroughs</span></div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2022">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Three-dimensional fluorescence microscopy through virtual refocusing using a recursive light propagation network</div>
+            <div class="pub-authors">C. Shin*, H. Ryu*, E.-S. Cho, <span class="me">S. Han</span>, K.-H. Lee, C.-H. Kim, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">Medical Image Analysis</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2021">
+      <div class="year-label">2021</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="conf" data-year="2021">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Efficient Neural Network Approximation of Robust PCA for Automated Analysis of Calcium Imaging Data</div>
+            <div class="pub-authors"><span class="me">S. Han</span>, E.-S. Cho, I. Park, K. Shin, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">MICCAI 2021</span></div>
+          </div>
+        </li>
+        <li class="pub-item" data-type="journal" data-year="2021">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">3DM: Deep decomposition and deconvolution microscopy for rapid neural activity imaging</div>
+            <div class="pub-authors">E.-S. Cho*, <span class="me">S. Han*</span>, K.-H. Lee, C.-H. Kim, Y.-G. Yoon.</div>
+            <div class="venue-row"><span class="venue">Optics Express</span><span class="vnote">Editor's Pick · Image of the Week</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2019">
+      <div class="year-label">2019</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="conf" data-year="2019">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Smartphone Application to Estimate Distances from LTE Base Stations Based on Received Signal Strength Measurements</div>
+            <div class="pub-authors"><span class="me">S. Han</span>, T. Kang, J. Seo.</div>
+            <div class="venue-row"><span class="venue">ITC-CSCC 2019</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="year-group" data-year="2018">
+      <div class="year-label">2018</div>
+      <ul class="pub-list">
+        <li class="pub-item" data-type="conf" data-year="2018">
+          <span class="pub-num"></span>
+          <div class="pub-inner">
+            <div class="pub-title">Observation of Human Trajectory in Response to Haptic Feedback from Mobile Robot</div>
+            <div class="pub-authors">H.-S. Moon, W. Kim, <span class="me">S. Han</span>, J. Seo.</div>
+            <div class="venue-row"><span class="venue">ICCAS 2018</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-l">Seungjae Han · KAIST · 2026</span>
+    <a href="index.html" style="font-size:12px;color:var(--ink-45);">← Back to homepage</a>
+  </footer>
+</div>
+
+<script>
+  function renumber() {
+    const all = [...document.querySelectorAll('.pub-item')];
+    // number from bottom up (oldest = 1)
+    const total = all.length;
+    all.forEach((item, i) => {
+      item.querySelector('.pub-num').textContent = total - i;
+    });
+    // blank hidden ones
+    document.querySelectorAll('.pub-item.hidden .pub-num').forEach(n => n.textContent = '');
+  }
+
+  function setFilter(f, btn) {
+    document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+
+    const items = document.querySelectorAll('.pub-item');
+    items.forEach(item => {
+      const y = item.dataset.year;
+      const t = item.dataset.type;
+      const s = item.classList.contains('sel');
+      const show =
+        f === 'all'     ? true :
+        f === 'sel'     ? s :
+        f === 'journal' ? t === 'journal' :
+        f === 'conf'    ? t === 'conf' :
+        f === 'pre'     ? parseInt(y) <= 2022 :
+        y === f;
+      item.classList.toggle('hidden', !show);
+    });
+
+    document.querySelectorAll('.year-group').forEach(g => {
+      const any = [...g.querySelectorAll('.pub-item')].some(i => !i.classList.contains('hidden'));
+      g.classList.toggle('hidden', !any);
+    });
+
+    renumber();
+  }
+
+  renumber();
+</script>
+</body>
+</html>
