@@ -1,0 +1,92 @@
+name: Website preview checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['index.html', 'publications.html', 'assets/**', '.github/workflows/website-preview.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser test dependencies
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Check responsive layouts and publication filters
+        run: |
+          python -m http.server 8000 >/tmp/site-server.log 2>&1 &
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          import json
+          Path('previews').mkdir(exist_ok=True)
+          report = {'responsive': [], 'errors': []}
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page()
+              page.on('pageerror', lambda error: report['errors'].append(str(error)))
+              for file in ['index.html', 'publications.html']:
+                  for width in [320, 390, 560, 768, 1024, 1440]:
+                      page.set_viewport_size({'width': width, 'height': 1000})
+                      page.goto('http://localhost:8000/' + file)
+                      assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (file, width)
+                      report['responsive'].append([file, width, 'pass'])
+              for file, stem in [('index.html', 'home'), ('publications.html', 'publications')]:
+                  for width, label in [(1440, 'desktop'), (390, 'mobile')]:
+                      page.set_viewport_size({'width': width, 'height': 1000 if width == 1440 else 844})
+                      page.goto('http://localhost:8000/' + file)
+                      page.screenshot(path=f'previews/{stem}-{label}.png', full_page=True)
+                      if file == 'index.html' and width == 1440:
+                          assert page.locator('.portrait img').evaluate('(img) => img.complete && img.naturalWidth > 0')
+                          page.screenshot(path='previews/home-first-screen.png')
+              for category, expected in [('selected', 2), ('journal', 9), ('conference', 5), ('preprint', 2), ('all', 16)]:
+                  page.locator(f'[data-filter="{category}"]').click()
+                  assert page.locator('.publication:visible').count() == expected
+              page.locator('#paper-year').select_option('2025')
+              assert page.locator('.publication:visible').count() == 3
+              page.locator('#paper-search').fill('memristor')
+              assert page.locator('.publication:visible').count() == 1
+              page.locator('#paper-search').fill('no-matching-publication-xyz')
+              assert page.locator('#no-results').is_visible()
+              page.locator('.empty-state [data-reset-filters]').click()
+              assert page.locator('.publication:visible').count() == 16
+              page.goto('http://localhost:8000/index.html')
+              page.locator('.menu-toggle').click()
+              assert page.locator('.site-nav').is_visible()
+              page.keyboard.press('Escape')
+              assert not page.locator('.site-nav').is_visible()
+              page.locator('.news-archive summary').click()
+              assert page.locator('.news-archive').get_attribute('open') is not None
+              nojs = browser.new_context(java_script_enabled=False, viewport={'width': 390, 'height': 844})
+              q = nojs.new_page()
+              q.goto('http://localhost:8000/publications.html')
+              assert q.locator('.publication:visible').count() == 16
+              assert q.locator('.site-nav').is_visible()
+              browser.close()
+          assert not report['errors'], report['errors']
+          report['functional_checks'] = 'passed'
+          Path('previews/test-report.json').write_text(json.dumps(report, indent=2))
+          PY
+      - name: Package website and screenshots for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: seungjae-han-redesign-preview
+          retention-days: 14
+          path: |
+            index.html
+            publications.html
+            assets/
+            photo.jpeg
+            nature_methods_cover.png
+            CV_SeungjaeHan_0707.pdf
+            REDESIGN.md
+            previews/
