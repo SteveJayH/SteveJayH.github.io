@@ -7,20 +7,30 @@
   font-display: swap;
 }
 :root {
-  --red: #982b34;
-  --purple: #420d5d;
-  --blue: #1b1464;
-  --gray: #f0f0f0;
+  --brand-primary: #004890;
+  --brand-accent: #017cc2;
+  --brand-deep: #00366b;
+  --brand-secondary: #005b91;
+  --brand-footer: #082e50;
+  --surface: #eef5fa;
+  --border: #cbdce8;
+  --ink: #132b40;
+  --muted: #4b6275;
+  /* Compatibility aliases for the existing section classes. */
+  --red: var(--brand-primary);
+  --purple: var(--brand-deep);
+  --blue: var(--brand-primary);
+  --gray: var(--surface);
+  --teal: var(--brand-secondary);
+  --charcoal: var(--brand-footer);
   --width: 1280px;
-  --teal: #1f4b51;
-  --charcoal: #343a40;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   background: #fff;
-  color: #000;
+  color: var(--ink);
   font-family: "Manrope", Arial, sans-serif;
   font-synthesis: none;
   font-size: 16px;
@@ -34,7 +44,7 @@ h1, h2, h3, p, figure { margin: 0; }
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 a, summary { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid #4d65ff; outline-offset: 5px; }
+:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 5px; }
 .container { width: 90%; max-width: var(--width); margin-inline: auto; }
 .skip-link { position: fixed; z-index: 100; top: 8px; left: 8px; padding: 8px 16px; color: #000; background: #fff; transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
@@ -204,7 +214,7 @@ main:focus { outline: none; }
 .science-figure { margin: 0; min-width: 0; }
 .science-figure img { width: 100%; height: auto; max-height: 600px; object-fit: contain; display: block; }
 .science-figure figcaption, .cover-figure figcaption { font-size: 12px; line-height: 1.5; margin-top: 12px; }
-.science-figure figcaption { color: #585858; }
+.science-figure figcaption { color: var(--muted); }
 .science-figure figcaption a { text-decoration: underline; text-underline-offset: 2px; }
 .cover-figure { margin: 0; text-align: center; }
 .cover-figure img { display: block; width: auto; height: auto; max-height: 560px; max-width: 100%; margin: auto; }
@@ -230,7 +240,7 @@ main:focus { outline: none; }
 .question h2 { margin-bottom: 40px; }
 .question:hover { text-decoration: none; }
 .question:hover h2 { text-decoration: underline; text-underline-offset: 4px; }
-.project { display: grid; grid-template-columns: 1fr 1.35fr; gap: 80px; padding: 64px 0; border-bottom: 1px solid #ddd; scroll-margin-top: 32px; }
+.project { display: grid; grid-template-columns: 1fr 1.35fr; gap: 80px; padding: 64px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 32px; }
 .project:first-child { padding-top: 0; }
 .project:last-child { padding-bottom: 0; border: 0; }
 .project h3 { margin-bottom: 16px; }
@@ -247,7 +257,7 @@ main:focus { outline: none; }
 .year-picker select { appearance: auto; background: transparent; color: #fff; border: 1px solid #ffffffa0; border-radius: 0; padding: 8px 12px; min-height: 40px; }
 .year-picker option { background: #fff; color: #000; }
 .author-note { font-size: 14px; margin-bottom: 32px; }
-.publication { display: grid; grid-template-columns: minmax(0,1fr) 48px; gap: 40px; align-items: center; padding: 36px 0; border-bottom: 1px solid #e1e1e1; scroll-margin-top: 24px; }
+.publication { display: grid; grid-template-columns: minmax(0,1fr) 48px; gap: 40px; align-items: center; padding: 36px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 24px; }
 .publication:first-child { padding-top: 0; }
 .publication + .publication { margin-top: 0; }
 .publication h2 { font-size: 22px; font-weight: 500; line-height: 1.2; margin-bottom: 16px; }
@@ -258,16 +268,16 @@ main:focus { outline: none; }
 .paper-action { color: #fff; background: var(--red); width: 48px; height: 48px; display: grid; place-items: center; }
 .paper-action .square { border: 0; }
 .resource-list { max-width: 1024px; }
-.resource-list article { padding: 48px 0; border-bottom: 1px solid #ddd; scroll-margin-top: 32px; }
+.resource-list article { padding: 48px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 32px; }
 .resource-list article:first-child { padding-top: 0; }
 .resource-list article:last-child { border: 0; padding-bottom: 0; }
 .resource-list p:not(.eyebrow) { margin-top: 24px; }
-.news-page .news-item { display: grid; grid-template-columns: 170px 1fr; gap: 48px; padding: 32px 0; border-bottom: 1px solid #ddd; }
+.news-page .news-item { display: grid; grid-template-columns: 170px 1fr; gap: 48px; padding: 32px 0; border-bottom: 1px solid var(--border); }
 .news-page .news-item:first-child { padding-top: 0; }
 .news-page .news-item p { font-size: 18px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; min-height: 350px; }
 .contact-grid > div > p:not(.eyebrow) { margin-top: 24px; font-size: 18px; line-height: 1.5; }
-.contact-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 20px 0; }
+.contact-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 20px 0; }
 .site-footer { background: var(--charcoal); padding: 32px 0; }
 .footer-grid { grid-template-columns: 1fr 1.15fr .8fr; gap: 64px; }
 .footer-grid p { font-size: 14px; margin-top: 16px; }
@@ -275,7 +285,7 @@ main:focus { outline: none; }
 .footer-links { flex-direction: column; align-items: flex-end; gap: 12px; }
 .footer-links .text-link { font-size: 14px; letter-spacing: 0; }
 .footer-links .arrow { color: #fff; width: 16px; height: 16px; }
-.preview-font-warning { position: fixed; bottom: 12px; left: 12px; right: 12px; z-index: 1000; background: #fff; color: #111; border: 1px solid #982b34; padding: 12px 16px; font: 14px/1.5 Arial,sans-serif; box-shadow: 0 3px 16px #0002; }
+.preview-font-warning { position: fixed; bottom: 12px; left: 12px; right: 12px; z-index: 1000; background: #fff; color: #111; border: 1px solid var(--brand-primary); padding: 12px 16px; font: 14px/1.5 Arial,sans-serif; box-shadow: 0 3px 16px #0002; }
 @media (max-width: 1100px) and (min-width: 768px) { .split, .project, .contact-grid { gap: 48px; } }
 @media (max-width: 991px) {
   h2 { font-size: 36px; }

@@ -58,3 +58,16 @@ Manrope uses the same public font URL as the reference. No font files are includ
 `tests/lab_test.py` checks all 17 pages at 320, 390, 768, 1024 and 1440px; local links and section targets; every preview route; menu and browser-back behaviour; press filters; publications; FAQs; profile accordions; and navigation without JavaScript. Screenshot and font-check evidence is written to `previews/`.
 
 Changes belong only to the review branch. There is no automatic merge into main and no production deployment in this revision.
+
+## Blue palette
+
+The primary colour is the owner-supplied `#004890`; `#017CC2` is the accent.
+Menu: `#00366B`. Research sections: `#005B91`. Footer: `#082E50`.
+Light sections: `#EEF5FA`. Main text: `#132B40`.
+These are site design choices, not a separately verified institutional identity standard.
+
+Change the semantic colour tokens in `assets/site.css` for later adjustments.
+Screen-specific details are in the final palette block of `assets/lab.css`.
+The original red/purple class names remain only as compatibility aliases.
+All publication images, text, routes, typography and interactive behaviour are retained.
+The single-file `preview.html` is rebuilt from the same blue site sources.
