@@ -46,8 +46,10 @@ with sync_playwright() as p:
     report['site_fonts'] = actual_fonts(page, 'h1')
     requests = page.evaluate('performance.getEntriesByType("resource").map(e => e.name)')
     assert any(FONT_FILE in url for url in requests), requests
+    # Affiliation and biography are different paragraphs with different sizes.
     pairs = [('h1', 'h1', 'Seungjae Han, PhD'),
-             ('.member-content p', '.profile-description > p', 'Computational neuroscience and fluorescence microscopy.'),
+             ('.member-content p.text-size-medium', '.affiliation', 'Postdoctoral Fellow, KAIST'),
+             ('.member-content .w-richtext p', '.profile-description > p', 'Computational neuroscience and fluorescence microscopy.'),
              ('h3.text-accordion', '.resume-section > summary h2', 'Professional appointments')]
     for old, new, text in pairs:
         a = ref.locator(old).first.evaluate(STYLE)
