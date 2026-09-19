@@ -20,15 +20,17 @@ jobs:
       - name: Install browser test dependencies
         run: |
           pip install playwright==1.55.0
-          python -m playwright install --with-deps chromium
-      - name: Check pages and capture screenshots
+          python -m playwright install --with-deps chromium webkit
+      - name: Check pages and actual rendered fonts
         run: |
           python -m http.server 8000 >/tmp/site-server.log 2>&1 &
           python tests/website_preview.py
+          python tests/font_check.py
       - name: Package website and screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: seungjae-han-rajan-revision
+          name: seungjae-han-font-revision
           retention-days: 14
           path: |
             index.html

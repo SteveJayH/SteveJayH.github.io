@@ -26,7 +26,8 @@ with sync_playwright() as p:
             page.screenshot(path=str(out / f'{name[:-5]}-{label}.png'), full_page=True)
             if name == 'index.html' and width == 1440:
                 page.screenshot(path=str(out / 'home-first-screen.png'))
-                report['manrope_loaded'] = page.evaluate('document.fonts.check("300 50px Manrope")')
+                report['primary_font_loaded'] = page.evaluate('''() => [...document.fonts].some(f => f.family.includes('Manrope Reference') && f.status === 'loaded')''')
+                assert report['primary_font_loaded'], 'Primary webfont did not load'
     page.set_viewport_size({'width': 1440, 'height': 1000})
     page.goto('http://localhost:8000/index.html')
     expect(page.locator('.resume-section')).to_have_count(7)

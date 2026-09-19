@@ -1,3 +1,11 @@
+/* Use the same variable-font asset as the reference, not a family-name substitute. */
+@font-face {
+  font-family: "Manrope Reference";
+  src: url("https://cdn.prod.website-files.com/667a10df2ea8d55c5f903748/667a13fe587f6a3229bc0dd5_Manrope-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
 :root {
   --red: #982b34;
   --purple: #420d5d;
@@ -6,16 +14,18 @@
   --width: 1280px;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   background: #fff;
   color: #000;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: "Manrope Reference", "Manrope", Arial, sans-serif;
+  font-synthesis: none;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 [hidden] { display: none !important; }
 h1, h2, h3, p, figure { margin: 0; }
@@ -50,7 +60,7 @@ a, summary { -webkit-tap-highlight-color: transparent; }
 .profile-background { position: absolute; z-index: -1; inset: 0 0 auto; height: 323px; background: var(--red); }
 .profile-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 64px; padding-block: 144px 80px; }
 .profile-heading { grid-column: 1; grid-row: 1; color: #fff; }
-h1 { font-size: 50px; font-weight: 300; line-height: 1.2; }
+h1 { font-size: 50px; font-weight: 300; line-height: 1.2; letter-spacing: normal; }
 .affiliation { margin-top: 24px; font-size: 18px; line-height: 1.5; }
 .portrait { grid-column: 2; grid-row: 1 / span 2; align-self: start; border: 2px solid #fff; }
 .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 38%; }
@@ -95,12 +105,15 @@ h1 { font-size: 50px; font-weight: 300; line-height: 1.2; }
 .article-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px; }
 @media (min-width: 768px) and (max-width: 1100px) {
   .profile-grid { column-gap: 40px; }
-  h1 { font-size: 42px; }
-  .affiliation { font-size: 16px; }
-  .profile-background { height: 312px; }
+  .profile-background { height: 323px; }
   .profile-description { margin-top: 64px; }
   .menu-grid, .footer-grid { gap: 32px; }
   .resume-content { gap: 32px; }
+}
+/* Preserve the reference's 48px tablet title without squeezing it beside the photo. */
+@media (min-width: 768px) and (max-width: 991px) {
+  h1 { font-size: 48px; }
+  .profile-grid { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: 32px; }
 }
 @media (max-width: 767px) {
   .navigation-bar { height: 64px; }
