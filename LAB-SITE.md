@@ -59,15 +59,25 @@ Manrope uses the same public font URL as the reference. No font files are includ
 
 Changes belong only to the review branch. There is no automatic merge into main and no production deployment in this revision.
 
-## Blue palette
+## Colour roles: blue highlight, independent secondary colours
 
-The primary colour is the owner-supplied `#004890`; `#017CC2` is the accent.
-Menu: `#00366B`. Research sections: `#005B91`. Footer: `#082E50`.
-Light sections: `#EEF5FA`. Main text: `#132B40`.
-These are site design choices, not a separately verified institutional identity standard.
+The former red highlight (`#982B34`) is now the owner-supplied `#004890`.
+All other CSS is restored to the pre-blue baseline. This is not a monochromatic
+blue theme, and it does not recolour research figures or publication covers.
 
-Change the semantic colour tokens in `assets/site.css` for later adjustments.
-Screen-specific details are in the final palette block of `assets/lab.css`.
-The original red/purple class names remain only as compatibility aliases.
-All publication images, text, routes, typography and interactive behaviour are retained.
-The single-file `preview.html` is rebuilt from the same blue site sources.
+- Main heading bands and formerly red highlights: `#004890`.
+- Research sections, menu, and Publications tile: purple `#420D5D`.
+- Our Science tile: indigo `#1B1464`.
+- People tile: dark teal `#1F4B51`.
+- Footer: charcoal `#343A40`.
+- Neutral section backgrounds: `#F0F0F0`; body text and borders remain neutral.
+
+The legacy `--red` variable means the primary highlight role. Its value is blue.
+The other colour variables retain their independent roles and original values.
+`#017CC2` is not used as a second site-wide wash. Typography, content, all 17
+page routes and interaction code are unchanged. The portable preview uses the
+same styles and retains working navigation.
+
+`tests/palette_roles.py` checks the distinct section, card, menu, footer and
+Press colours, including the single-file preview. The standard lab tests cover
+all 17 pages and their interactions.
