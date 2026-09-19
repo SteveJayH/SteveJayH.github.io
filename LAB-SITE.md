@@ -59,25 +59,24 @@ Manrope uses the same public font URL as the reference. No font files are includ
 
 Changes belong only to the review branch. There is no automatic merge into main and no production deployment in this revision.
 
-## Colour roles: blue highlight, independent secondary colours
+## Colour roles: a vivid primary and quieter secondary colours
 
-The former red highlight (`#982B34`) is now the owner-supplied `#004890`.
-All other CSS is restored to the pre-blue baseline. This is not a monochromatic
-blue theme, and it does not recolour research figures or publication covers.
+The approved primary `#004890`, neutral background `#F0F0F0`, footer
+`#343A40`, typography, layout and content are unchanged.
 
-- Main heading bands and formerly red highlights: `#004890`.
-- Research sections, menu, and Publications tile: purple `#420D5D`.
-- Our Science tile: indigo `#1B1464`.
-- People tile: dark teal `#1F4B51`.
-- Footer: charcoal `#343A40`.
-- Neutral section backgrounds: `#F0F0F0`; body text and borders remain neutral.
+- Our Science: ink blue `#253B63`, with less violet and less chroma than before.
+- People: forest green `#315C53`, shifted away from cyan to distinguish it from the main blue.
+- Publications: warm stone `#62584F`, replacing purple with a low-chroma warm counterpoint.
+- Former purple research/CTA surfaces: slate ink `#293D46`.
+- Navigation panel and its open header: darker slate ink `#24343C`.
+- Small metadata and section labels use science ink, not the warm Publications surface colour.
 
-The legacy `--red` variable means the primary highlight role. Its value is blue.
-The other colour variables retain their independent roles and original values.
-`#017CC2` is not used as a second site-wide wash. Typography, content, all 17
-page routes and interaction code are unchanged. The portable preview uses the
-same styles and retains working navigation.
+The design intent is a strong brand colour supported by restrained, distinct
+category colours rather than three competing saturated colours or an all-blue theme.
+Colours are centralized in the final secondary-palette block in `assets/lab.css`.
+The legacy blue/teal/purple aliases preserve existing markup without imposing
+a single replacement colour on every formerly purple element.
 
-`tests/palette_roles.py` checks the distinct section, card, menu, footer and
-Press colours, including the single-file preview. The standard lab tests cover
-all 17 pages and their interactions.
+Published figures, covers, all 17 static pages and interaction scripts are unchanged.
+The portable preview is rebuilt from the same styles. Browser tests check
+roles, the absence of former purple UI values, and white text contrast.

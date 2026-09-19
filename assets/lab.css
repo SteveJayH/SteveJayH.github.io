@@ -56,3 +56,36 @@
 .press-tile:first-child .press-actions{align-self:end}
 @media(max-width:991px){.press-grid{grid-template-columns:1fr 1fr}.press-tile:first-child{grid-column:1 / -1}.press-tile:first-child .press-thumb{min-height:250px}}
 @media(max-width:767px){.press-grid{grid-template-columns:1fr;gap:40px}.press-tile:first-child{display:flex;padding:0;background:none;grid-column:auto}.press-tile:first-child .press-thumb{min-height:0;height:220px;margin-bottom:20px}.press-thumb{height:220px}.press-tile h2{font-size:20px}}
+
+/* Secondary palette: a vivid primary, quiet section colours, and unchanged neutrals. */
+:root {
+  --brand-primary: #004890;
+  --science-ink: #253B63;
+  --people-green: #315C53;
+  --publication-stone: #62584F;
+  --support-ink: #293D46;
+  --navigation-ink: #24343C;
+  /* Existing markup keeps these aliases; each colour now has a separate role. */
+  --blue: var(--science-ink);
+  --teal: var(--people-green);
+  --purple: var(--support-ink);
+}
+@media screen {
+  .feature-link.purple { background: var(--publication-stone); }
+  .question { background: var(--science-ink); }
+  .menu-panel,
+  .site-header:has(.navigation[open]) { background: var(--navigation-ink); }
+  .resume-item h3,
+  .news-item h3,
+  .year-navigation,
+  .publication-year > h2,
+  .venue,
+  .press-meta,
+  .resource-categories { color: var(--science-ink); }
+  .comic-panel { color: var(--support-ink); border-color: var(--support-ink); }
+  .comic-panel:nth-child(2n) { color: var(--brand-primary); }
+  .press-thumb.thumb-0 { background: var(--people-green); }
+  .press-thumb.thumb-1 { background: var(--publication-stone); }
+  .press-thumb.thumb-2 { background: var(--brand-primary); }
+  .press-thumb.thumb-3 { background: var(--science-ink); }
+}
