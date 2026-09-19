@@ -45,6 +45,7 @@ with sync_playwright() as p:
         check(page, '.press-thumb.thumb-' + str(i), colour)
     page.locator('[data-press-filter="highlight"]').click()
     expect(page.locator('.press-row:visible')).to_have_count(3)
+    page.mouse.move(0, 0)  # The original hover style is black; inspect selection after leaving it.
     check(page, '[data-press-filter="highlight"]', 'rgb(0, 72, 144)', 'color')
     report['checks'].append('Blue replaces red only; secondary and neutral roles remain separate.')
     page.goto(BASE + 'index.html')

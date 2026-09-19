@@ -1,7 +1,7 @@
 name: Restore distinct palette roles
 on:
   pull_request:
-    paths: ['tools/restore_palette_roles.py', '.github/workflows/restore-palette-roles.yml']
+    paths: ['tools/restore_palette_roles.py', 'tests/palette_roles.py', '.github/workflows/restore-palette-roles.yml']
 permissions:
   contents: write
 concurrency:
