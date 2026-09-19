@@ -1,0 +1,172 @@
+name: Refine secondary palette
+on:
+  pull_request:
+    paths: ['.github/workflows/refine-secondary-palette.yml']
+permissions:
+  contents: write
+concurrency:
+  group: refine-secondary-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  refine:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'redesign/rajan-inspired-20260918'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser checks
+        run: |
+          pip install beautifulsoup4 playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Apply role-based secondary palette
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, hashlib
+          root = Path('.')
+          names = json.loads(Path('data/routes.json').read_text())
+          preserved = [Path(n + '.html') for n in names] + [Path(p) for p in ['assets/site.css','assets/site.js','assets/lab.js','tools/build_lab.py','photo.jpeg','assets/support-figure.png','nature_methods_cover.png','CV_SeungjaeHan_0707.pdf']]
+          hashes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in preserved}
+          block = '''
+          /* Secondary palette: a vivid primary, quiet section colours, and unchanged neutrals. */
+          :root {
+            --brand-primary: #004890;
+            --science-ink: #253B63;
+            --people-green: #315C53;
+            --publication-stone: #62584F;
+            --support-ink: #293D46;
+            --navigation-ink: #24343C;
+            /* Existing markup keeps these aliases; each colour now has a separate role. */
+            --blue: var(--science-ink);
+            --teal: var(--people-green);
+            --purple: var(--support-ink);
+          }
+          @media screen {
+            .feature-link.purple { background: var(--publication-stone); }
+            .question { background: var(--science-ink); }
+            .menu-panel,
+            .site-header:has(.navigation[open]) { background: var(--navigation-ink); }
+            .resume-item h3,
+            .news-item h3,
+            .year-navigation,
+            .publication-year > h2,
+            .venue,
+            .press-meta,
+            .resource-categories { color: var(--science-ink); }
+            .comic-panel { color: var(--support-ink); border-color: var(--support-ink); }
+            .comic-panel:nth-child(2n) { color: var(--brand-primary); }
+            .press-thumb.thumb-0 { background: var(--people-green); }
+            .press-thumb.thumb-1 { background: var(--publication-stone); }
+            .press-thumb.thumb-2 { background: var(--brand-primary); }
+            .press-thumb.thumb-3 { background: var(--science-ink); }
+          }
+          '''
+          css = Path('assets/lab.css')
+          css.write_text(css.read_text().split('/* Secondary palette:')[0].rstrip() + '\n' + block)
+          test = Path('tests/palette_roles.py')
+          text = test.read_text()
+          replacements = {
+            "check(page, '.section.purple', 'rgb(66, 13, 93)')": "check(page, '.section.purple', 'rgb(41, 61, 70)')",
+            "check(page, '.feature-link[href*=\"publications\"]', 'rgb(66, 13, 93)')": "check(page, '.feature-link[href*=\"publications\"]', 'rgb(98, 88, 79)')",
+            "check(page, '.menu-panel', 'rgb(66, 13, 93)')": "check(page, '.menu-panel', 'rgb(36, 52, 60)')",
+            'rgb(27, 20, 100)': 'rgb(37, 59, 99)',
+            'rgb(31, 75, 81)': 'rgb(49, 92, 83)',
+            'rgb(66, 16, 91)': 'rgb(98, 88, 79)',
+            'Blue replaces red only; secondary and neutral roles remain separate.': 'Approved primary and neutrals remain; science ink, forest green and warm stone are distinct secondary roles.'
+          }
+          for before, after in replacements.items():
+              assert before in text, before
+              text = text.replace(before, after)
+          # Inspect all visible UI nodes; published raster images are deliberately untouched.
+          extra = '''
+              forbidden = {'rgb(66, 13, 93)', 'rgb(66, 16, 91)', 'rgb(50, 20, 70)'}
+              for name in json.loads((ROOT / 'data/routes.json').read_text()):
+                  page.goto(BASE + name + '.html')
+                  colours = page.locator('body *').evaluate_all("xs=>xs.filter(e=>e.getClientRects().length).flatMap(e=>{const s=getComputedStyle(e);return [s.color,s.backgroundColor,s.borderTopColor,s.stroke,s.fill]})")
+                  assert not forbidden.intersection(colours), (name, forbidden.intersection(colours))
+              report['checks'].append('No old purple UI colours remain on any of the 17 routes; source images remain unchanged.')
+              page.goto(BASE + 'comics.html')
+              check(page, '.comic-panel', 'rgb(41, 61, 70)', 'color')
+              check(page, '.comic-panel', 'rgb(41, 61, 70)', 'borderTopColor')
+              page.goto(BASE + 'research.html')
+              if page.locator('.question').count():
+                  check(page, '.question', 'rgb(37, 59, 99)')
+              def contrast_white(hex_colour):
+                  rgb = [int(hex_colour[i:i+2],16)/255 for i in (0,2,4)]
+                  linear = [v/12.92 if v <= .04045 else ((v+.055)/1.055)**2.4 for v in rgb]
+                  return 1.05 / (sum(v*w for v,w in zip(linear,[.2126,.7152,.0722]))+.05)
+              report['white_text_contrast'] = {c:round(contrast_white(c),2) for c in ['004890','253B63','315C53','62584F','293D46','24343C','343A40']}
+              assert min(report['white_text_contrast'].values()) >= 4.5
+              report['checks'].append('White text contrast checked on every dark palette surface.')
+          '''
+          text = text.replace("    page.goto(BASE + 'index.html')\n    page.evaluate('document.fonts.ready')", extra + "\n    page.goto(BASE + 'index.html')\n    page.evaluate('document.fonts.ready')")
+          test.write_text(text)
+          doc = Path('LAB-SITE.md')
+          heading = '## Colour roles:'
+          old = doc.read_text()
+          assert heading in old
+          doc.write_text(old.split(heading)[0] + '''## Colour roles: a vivid primary and quieter secondary colours
+
+          The approved primary `#004890`, neutral background `#F0F0F0`, footer
+          `#343A40`, typography, layout and content are unchanged.
+
+          - Our Science: ink blue `#253B63`, with less violet and less chroma than before.
+          - People: forest green `#315C53`, shifted away from cyan to distinguish it from the main blue.
+          - Publications: warm stone `#62584F`, replacing purple with a low-chroma warm counterpoint.
+          - Former purple research/CTA surfaces: slate ink `#293D46`.
+          - Navigation panel and its open header: darker slate ink `#24343C`.
+          - Small metadata and section labels use science ink, not the warm Publications surface colour.
+
+          The design intent is a strong brand colour supported by restrained, distinct
+          category colours rather than three competing saturated colours or an all-blue theme.
+          Colours are centralized in the final secondary-palette block in `assets/lab.css`.
+          The legacy blue/teal/purple aliases preserve existing markup without imposing
+          a single replacement colour on every formerly purple element.
+
+          Published figures, covers, all 17 static pages and interaction scripts are unchanged.
+          The portable preview is rebuilt from the same styles. Browser tests check
+          roles, the absence of former purple UI values, and white text contrast.
+          ''')
+          assert hashes == {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in preserved}
+          Path('previews').mkdir(exist_ok=True)
+          Path('previews/palette-preservation.json').write_text(json.dumps({'unchanged_files':hashes,'static_routes_unchanged':len(names)},indent=2))
+          PY
+          python tools/build_preview.py
+      - name: Test palette, content, navigation and rendered fonts
+        run: |
+          python -m http.server 8000 >/tmp/site-server.log 2>&1 &
+          python tests/palette_roles.py
+          python tests/lab_test.py
+      - name: Package tested website
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: han-lab-refined-secondary-palette
+          retention-days: 14
+          path: |
+            *.html
+            assets/
+            data/
+            tools/build_lab.py
+            tools/build_preview.py
+            tests/
+            LAB-SITE.md
+            photo.jpeg
+            nature_methods_cover.png
+            CV_SeungjaeHan_0707.pdf
+            previews/
+      - name: Save verified colours to the review branch only
+        env:
+          REVIEW_BRANCH: ${{ github.head_ref }}
+        run: |
+          test "$REVIEW_BRANCH" = 'redesign/rajan-inspired-20260918'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/lab.css tests/palette_roles.py LAB-SITE.md preview.html
+          git commit -m 'Balance secondary colours: ink blue, forest green and warm stone'
+          git push origin "HEAD:refs/heads/$REVIEW_BRANCH"
