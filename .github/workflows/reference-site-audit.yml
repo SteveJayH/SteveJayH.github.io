@@ -1,0 +1,59 @@
+name: Reference site audit
+on:
+  pull_request:
+    paths: ['.github/workflows/reference-site-audit.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Inspect requested pages
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          from pathlib import Path
+          import json
+          out = Path('reference-site-audit'); out.mkdir()
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
+              for slug, name in [('', 'home'), ('research','research'), ('kanaka-rajan','profile'), ('publications','publications'), ('resources','resources'), ('contact','contact')]:
+                  page.goto('https://www.rajanlab.com/' + slug, wait_until='networkidle', timeout=60000)
+                  page.evaluate('document.fonts.ready')
+                  # Trigger scroll-based reveals before recording the page.
+                  for y in range(0, page.evaluate('document.body.scrollHeight'), 650):
+                      page.evaluate('(y) => window.scrollTo(0,y)', y)
+                      page.wait_for_timeout(120)
+                  page.evaluate('window.scrollTo(0,0)'); page.wait_for_timeout(500)
+                  (out / (name + '.html')).write_text(page.content())
+                  page.screenshot(path=str(out / (name + '-desktop.png')), full_page=True)
+                  styles = page.locator('h1,h2,h3,p,main,section,[class*=section],[class*=grid],[class*=wrapper]').evaluate_all('''els => els.filter(el => {let r=el.getBoundingClientRect(); return r.width && r.height}).map(el => {const s=getComputedStyle(el),r=el.getBoundingClientRect(); return {tag:el.tagName,classes:el.className,text:el.innerText?.slice(0,120),rect:{x:r.x,y:r.y,width:r.width,height:r.height},style:Object.fromEntries(['fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','display','paddingTop','paddingBottom','gap','gridTemplateColumns','backgroundColor','color','fontVariationSettings','webkitFontSmoothing'].map(k => [k,s[k]]))}})''')
+                  (out / (name + '-styles.json')).write_text(json.dumps(styles,indent=2))
+                  if name in ['home','profile']:
+                      if name == 'home':
+                          page.locator('.w-nav-button').first.click()
+                          page.wait_for_timeout(600)
+                          page.screenshot(path=str(out / 'menu-desktop.png'))
+                          page.keyboard.press('Escape')
+                      page.set_viewport_size({'width':390,'height':844})
+                      page.reload(wait_until='networkidle'); page.evaluate('document.fonts.ready')
+                      page.screenshot(path=str(out / (name + '-mobile.png')),full_page=True)
+                      page.set_viewport_size({'width':1440,'height':1000})
+              response = page.request.get('https://raw.githubusercontent.com/SteveJayH/SteveJayH.github.io/main/index.html')
+              (out / 'original-index.html').write_text(response.text())
+              browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-site-audit
+          retention-days: 1
+          path: reference-site-audit/
