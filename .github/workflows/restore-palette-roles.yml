@@ -1,0 +1,62 @@
+name: Restore distinct palette roles
+on:
+  pull_request:
+    paths: ['tools/restore_palette_roles.py', '.github/workflows/restore-palette-roles.yml']
+permissions:
+  contents: write
+concurrency:
+  group: restore-palette-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  restore:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'redesign/rajan-inspired-20260918'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser tools
+        run: |
+          pip install beautifulsoup4 playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Restore secondary colours and replace red highlight only
+        run: |
+          git fetch --no-tags --depth=1 origin f814dcbf5b1e2140c9b70fa47ad5ae129d541051
+          python tools/restore_palette_roles.py
+      - name: Test colour roles, all routes and actual fonts
+        run: |
+          python -m http.server 8000 >/tmp/site-server.log 2>&1 &
+          python tests/palette_roles.py
+          python tests/lab_test.py
+      - name: Package website and browser screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: han-lab-distinct-palette
+          retention-days: 14
+          path: |
+            *.html
+            assets/
+            data/
+            tools/build_lab.py
+            tools/build_preview.py
+            tests/lab_test.py
+            tests/palette_roles.py
+            photo.jpeg
+            nature_methods_cover.png
+            CV_SeungjaeHan_0707.pdf
+            LAB-SITE.md
+            previews/
+      - name: Save verified styles to the review branch only
+        env:
+          REVIEW_BRANCH: ${{ github.head_ref }}
+        run: |
+          test "$REVIEW_BRANCH" = 'redesign/rajan-inspired-20260918'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/site.css assets/lab.css preview.html LAB-SITE.md
+          git commit -m 'Restore purple, teal, indigo and neutral roles; replace only red with #004890'
+          git push origin "HEAD:refs/heads/$REVIEW_BRANCH"
