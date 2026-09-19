@@ -22,9 +22,10 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Build the portable preview
         run: python tools/build_preview.py
-      - name: Check every route, interaction, image and rendered font
+      - name: Check colour roles, every route, interaction, image and rendered font
         run: |
           python -m http.server 8000 >/tmp/site-server.log 2>&1 &
+          python tests/palette_roles.py
           python tests/lab_test.py
       - name: Save the review bundle
         if: always()
@@ -38,6 +39,7 @@ jobs:
             data/
             tools/
             tests/lab_test.py
+            tests/palette_roles.py
             photo.jpeg
             nature_methods_cover.png
             CV_SeungjaeHan_0707.pdf
