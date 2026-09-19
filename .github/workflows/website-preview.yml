@@ -1,0 +1,45 @@
+name: Full lab website checks
+on:
+  pull_request:
+    branches: [main]
+    paths: ['*.html', 'assets/**', 'data/**', 'tools/**', 'tests/**', '.github/workflows/website-preview.yml']
+permissions:
+  contents: read
+concurrency:
+  group: lab-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install beautifulsoup4 playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Build the portable preview
+        run: python tools/build_preview.py
+      - name: Check every route, interaction, image and rendered font
+        run: |
+          python -m http.server 8000 >/tmp/site-server.log 2>&1 &
+          python tests/lab_test.py
+      - name: Save the review bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: han-lab-full-website
+          retention-days: 14
+          path: |
+            *.html
+            assets/
+            data/
+            tools/
+            tests/lab_test.py
+            photo.jpeg
+            nature_methods_cover.png
+            CV_SeungjaeHan_0707.pdf
+            LAB-SITE.md
+            previews/

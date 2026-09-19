@@ -3,7 +3,7 @@ from pathlib import Path
 import base64, json, mimetypes
 from bs4 import BeautifulSoup
 ROOT=Path(__file__).resolve().parents[1]
-NAMES=['index','vision','research','profile','publications','resources','news','contact']
+NAMES=json.loads((ROOT/'data/routes.json').read_text())
 def embed_images(soup):
     for image in soup.select('img[src]'):
         source=image['src']
@@ -13,8 +13,8 @@ def embed_images(soup):
                 mime=mimetypes.guess_type(source)[0] or 'application/octet-stream'
                 image['src']=f'data:{mime};base64,'+base64.b64encode(path.read_bytes()).decode()
 doc=BeautifulSoup((ROOT/'index.html').read_text(),'html.parser')
-for el in doc.select('link[rel="canonical"],link[href="assets/site.css"],script[src="assets/site.js"]'):el.decompose()
-style=doc.new_tag('style');style.string=(ROOT/'assets/site.css').read_text();doc.head.append(style)
+for el in doc.select('link[rel="canonical"],link[href="assets/site.css"],link[href="assets/lab.css"],script[src="assets/site.js"],script[src="assets/lab.js"]'):el.decompose()
+style=doc.new_tag('style');style.string=(ROOT/'assets/site.css').read_text()+'\n'+(ROOT/'assets/lab.css').read_text();doc.head.append(style)
 content={}
 for name in NAMES:
     page=BeautifulSoup((ROOT/f'{name}.html').read_text(),'html.parser');embed_images(page)
@@ -24,7 +24,7 @@ warning=doc.new_tag('div',id='preview-font-warning',attrs={'class':'preview-font
 warning.string='웹폰트를 불러오지 못해 대체 글꼴로 표시 중입니다. 함께 제공한 화면 이미지는 Manrope 로딩 후 촬영했습니다.'
 doc.body.append(warning);doc.body['data-preview']='true'
 data=doc.new_tag('script',id='preview-pages',type='application/json');data.string=json.dumps(content,ensure_ascii=False).replace('</','<\\/');doc.body.append(data)
-script=doc.new_tag('script');script.string=(ROOT/'assets/site.js').read_text();doc.body.append(script)
+script=doc.new_tag('script');script.string=(ROOT/'assets/site.js').read_text()+'\n'+(ROOT/'assets/lab.js').read_text();doc.body.append(script)
 router=r'''
 (() => {
   const pages=JSON.parse(document.getElementById('preview-pages').textContent);
@@ -59,4 +59,4 @@ router=r'''
 '''.replace('__CV__',base64.b64encode((ROOT/'CV_SeungjaeHan_0707.pdf').read_bytes()).decode())
 script=doc.new_tag('script');script.string=router;doc.body.append(script)
 (ROOT/'preview.html').write_text(str(doc))
-print('Built preview.html with eight page routes; no font binaries embedded.')
+print(f'Built preview.html with {len(NAMES)} routes; no font binaries embedded.')

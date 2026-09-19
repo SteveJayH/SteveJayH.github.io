@@ -1,0 +1,47 @@
+[
+  {
+    "date": "2025-02-27",
+    "publisher": "KAIST Breakthroughs",
+    "type": "highlight",
+    "title": "An analog computing chip that corrects its own errors",
+    "description": "A research feature on the self-calibrating memristor platform.",
+    "url": "https://breakthroughs.kaist.ac.kr/sub02/view/page/1/id/4062",
+    "project": "computing.html"
+  },
+  {
+    "date": "2025-02-11",
+    "publisher": "Nature Electronics",
+    "type": "commentary",
+    "title": "Video processing on a self-calibrating analogue memristor array",
+    "description": "News & Views by Muhammad Umair Khan and Baker Mohammad.",
+    "url": "https://www.nature.com/articles/s41928-025-01341-1",
+    "project": "computing.html"
+  },
+  {
+    "date": "2025-01-23",
+    "publisher": "KAIST Electrical Engineering",
+    "type": "highlight",
+    "title": "A neuromorphic chip that learns and corrects itself",
+    "description": "KAIST research news on the joint work of the Choi and Yoon groups.",
+    "url": "https://ee.kaist.ac.kr/en/research-achieve/ee-prof-shinhyun-choi-and-young-gyu-yoons-joint-research-team-develops-neuromorphic-semiconductor-chip-that-learns-and-corrects-itself/",
+    "project": "computing.html"
+  },
+  {
+    "date": "2025-01-21",
+    "publisher": "ScienceDaily",
+    "type": "coverage",
+    "title": "Neuromorphic semiconductor chip that learns and corrects itself?",
+    "description": "A ScienceDaily report sourced from the KAIST press release.",
+    "url": "https://www.sciencedaily.com/releases/2025/01/250121125920.htm",
+    "project": "computing.html"
+  },
+  {
+    "date": "2024-02-26",
+    "publisher": "KAIST Breakthroughs",
+    "type": "highlight",
+    "title": "SUPPORT enables accurate optical readout of voltage signals in neurons",
+    "description": "A feature on self-supervised denoising of fluorescence recordings.",
+    "url": "https://breakthrough.kaist.ac.kr/sub03/view/id/497",
+    "project": "imaging.html"
+  }
+]
