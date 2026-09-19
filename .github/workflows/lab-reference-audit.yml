@@ -1,0 +1,42 @@
+name: Lab reference audit
+on:
+  pull_request:
+    paths: ['.github/workflows/lab-reference-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Capture the requested reference sections
+        run: |
+          mkdir -p lab-reference
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          import json, urllib.request
+          out = Path('lab-reference')
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page(viewport={'width':1440,'height':1000})
+              for slug in ['press','funding','team','comics','faq','join-us']:
+                  page.goto('https://www.rajanlab.com/'+slug, wait_until='networkidle', timeout=60000)
+                  page.evaluate('document.fonts.ready')
+                  page.screenshot(path=str(out/(slug+'.png')),full_page=True)
+                  (out/(slug+'.html')).write_text(page.content())
+              browser.close()
+          url='https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41592-023-02005-8/MediaObjects/41592_2023_2005_Fig1_HTML.png'
+          urllib.request.urlretrieve(url,out/'support-figure.png')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lab-reference-audit
+          retention-days: 1
+          path: lab-reference/
